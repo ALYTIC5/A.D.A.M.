@@ -65,11 +65,11 @@
             <div class="call-animation">
               <span class="call-ring">📞</span>
               <span class="call-status">Incoming call...</span>
-              <span class="call-number" id="restaurant-phone">(555) 987-6543</span>
+              <span class="call-number" id="restaurant-phone">(555) 333-4444</span>
             </div>
           </div>
           <div class="phone-response">
-            <div class="response-bubble">"Hello! Thank you for calling Sarah's Event Hall. How may I help you plan your perfect event today?"</div>
+            <div class="response-bubble">"Hello, thanks for calling Sarah's Event Hall! Are you looking to book a space?"</div>
           </div>
         </div>
       </div>
@@ -124,58 +124,75 @@
     </div>
     
     <div class="demo-tabs">
-      <button class="demo-tab active" data-demo="menu">Venues & Pricing</button>
+      <button class="demo-tab active" data-demo="spaces">Spaces</button>
+      <button class="demo-tab" data-demo="questions">Questions</button>
+      <button class="demo-tab" data-demo="policies">Policies</button>
+      <button class="demo-tab" data-demo="addons">Add-Ons</button>
       <button class="demo-tab" data-demo="hours">Hours</button>
       <button class="demo-tab" data-demo="firstMessage">First Message</button>
       <button class="demo-tab" data-demo="calls">Calls</button>
+      <button class="demo-tab" data-demo="reservations">Reservations</button>
     </div>
 
-    <!-- Menu Tab -->
-    <div class="demo-content active" id="demo-menu">
+    <!-- Spaces Tab -->
+    <div class="demo-content active" id="demo-spaces">
       <div class="demo-header-bar">
         <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
-      
-      <div class="menu-header">
-        <h3>Venue Spaces & Packages</h3>
-        <span class="item-count" id="menu-count">8 items available</span>
+      <div class="tab-header">
+        <h3>Venue Spaces</h3>
       </div>
-      
-      <button class="add-button" id="add-item-btn">+ Add Item</button>
-      
-      <div class="add-form" id="add-item-form">
-        <select id="new-item-category">
-          <option value="Spaces">Spaces</option>
-          <option value="Packages">Packages</option>
-          <option value="Per Person">Per Person</option>
-        </select>
-        <input type="text" id="new-item-name" placeholder="Item name">
-        <input type="text" id="new-item-price" placeholder="Price">
-        <div class="form-buttons">
-          <button class="cancel-btn" id="cancel-add">Cancel</button>
-          <button class="save-btn" id="confirm-add">Add</button>
-        </div>
-      </div>
-
-      <div class="add-form" id="edit-item-form">
-        <select id="edit-item-category">
-          <option value="Spaces">Spaces</option>
-          <option value="Packages">Packages</option>
-          <option value="Per Person">Per Person</option>
-        </select>
-        <input type="text" id="edit-item-name" placeholder="Item name">
-        <input type="text" id="edit-item-price" placeholder="Price">
-        <div class="form-buttons">
-          <button class="cancel-btn" id="cancel-edit">Cancel</button>
-          <button class="save-btn" id="confirm-edit">Save</button>
-        </div>
-      </div>
-
-      <div id="menu-items"></div>
-      
+      <div id="spaces-list"></div>
       <div class="demo-note">
-        💡 Toggle availability, edit or delete items. Changes are saved automatically.
+        💡 Toggle space availability. Edit hourly rates and capacities.
+      </div>
+    </div>
+
+    <!-- Questions Tab -->
+    <div class="demo-content" id="demo-questions">
+      <div class="demo-header-bar">
+        <span class="badge">🏛️ Sarah's Event Hall</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      <div class="tab-header">
+        <h3>Booking Questions</h3>
+      </div>
+      <p class="tab-description">These questions are asked by the AI during booking calls to gather customer information.</p>
+      <div id="questions-list"></div>
+      <div class="demo-note">
+        💡 Customize the questions the AI asks callers. Mark as required or optional.
+      </div>
+    </div>
+
+    <!-- Policies Tab -->
+    <div class="demo-content" id="demo-policies">
+      <div class="demo-header-bar">
+        <span class="badge">🏛️ Sarah's Event Hall</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      <div class="tab-header">
+        <h3>Booking Policies</h3>
+      </div>
+      <p class="tab-description">Configure deposit requirements, cancellation policies, and minimum booking durations.</p>
+      <div id="policies-list"></div>
+      <div class="demo-note">
+        💡 These policies are used by the AI when handling booking inquiries.
+      </div>
+    </div>
+
+    <!-- Add-Ons Tab -->
+    <div class="demo-content" id="demo-addons">
+      <div class="demo-header-bar">
+        <span class="badge">🏛️ Sarah's Event Hall</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      <div class="tab-header">
+        <h3>Add-Ons & Services</h3>
+      </div>
+      <div id="addons-list"></div>
+      <div class="demo-note">
+        💡 Toggle add-ons availability. These can be offered during booking calls.
       </div>
     </div>
 
@@ -185,15 +202,12 @@
         <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
-      
-      <div class="hours-header">
+      <div class="tab-header">
         <h3>Opening Hours</h3>
       </div>
-      
       <div class="hours-grid" id="hours-grid"></div>
-      
       <div class="demo-note">
-        💡 Click the time inputs to change opening hours. Toggle "Closed" for days you're not open.
+        💡 Set hours when the AI accepts bookings. Days marked closed won't accept reservations.
       </div>
     </div>
 
@@ -203,11 +217,9 @@
         <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
-      
-      <div class="first-message-header">
+      <div class="tab-header">
         <h3>AI Greeting</h3>
       </div>
-      
       <div class="first-message-editor">
         <textarea id="first-message-text" placeholder="Enter the greeting your AI will use..."></textarea>
         <div class="first-message-actions">
@@ -215,9 +227,8 @@
           <span class="save-feedback" id="first-message-feedback"></span>
         </div>
       </div>
-      
       <div class="demo-note">
-        💡 This is the first thing callers hear when the AI answers. Keep it short and professional!
+        💡 This is the first thing callers hear when the AI answers.
       </div>
     </div>
 
@@ -227,16 +238,29 @@
         <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
-      
-      <div class="calls-header">
+      <div class="tab-header">
         <h3>Recent Calls</h3>
         <span class="call-count">6 calls</span>
       </div>
-      
       <div class="calls-list" id="calls-list"></div>
-      
       <div class="demo-note">
         💡 Calls are automatically logged with summaries. In the real app, you can flag calls for review.
+      </div>
+    </div>
+
+    <!-- Reservations Tab -->
+    <div class="demo-content" id="demo-reservations">
+      <div class="demo-header-bar">
+        <span class="badge">🏛️ Sarah's Event Hall</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      <div class="tab-header">
+        <h3>Reservations</h3>
+        <span class="reservation-count">3 bookings</span>
+      </div>
+      <div id="reservations-list"></div>
+      <div class="demo-note">
+        💡 View all bookings. In the real app, you can edit, confirm, or delete reservations.
       </div>
     </div>
   </section>

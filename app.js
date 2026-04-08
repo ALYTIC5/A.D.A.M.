@@ -1,42 +1,84 @@
 // ============================================
-// ADAM Demo - Interactive Client Dashboard
+// ADAM Demo - Sarah's Event Hall (Venue Type)
 // ============================================
 
-const STORAGE_KEY = 'adam_demo_state';
+const STORAGE_KEY = 'adam_demo_venue_state';
 
 const defaultState = {
   restaurant: {
+    id: "sarahs-events",
     name: "Sarah's Event Hall",
-    description: "Premium venue for weddings, corporate events & celebrations",
-    phone: "(555) 987-6543",
+    description: "Private event spaces for any occasion",
+    phone: "(555) 333-4444",
   },
-  menuItems: [
-    { id: 1, name: 'Grand Ballroom', price: '500', category: 'Spaces', available: true },
-    { id: 2, name: 'Garden Terrace', price: '350', category: 'Spaces', available: true },
-    { id: 3, name: 'Executive Boardroom', price: '200', category: 'Spaces', available: true },
-    { id: 4, name: 'Wedding Package', price: '2500', category: 'Packages', available: true },
-    { id: 5, name: 'Corporate Day Package', price: '1200', category: 'Packages', available: true },
-    { id: 6, name: 'Birthday Party Package', price: '800', category: 'Packages', available: true },
-    { id: 7, name: 'Catering - Buffet', price: '35', category: 'Per Person', available: true },
-    { id: 8, name: 'Catering - Plated', price: '55', category: 'Per Person', available: false },
+  // Venue Spaces - like in VenueTabs
+  spaces: [
+    { 
+      id: "space-1", 
+      name: "Main Hall", 
+      capacityStanding: 60, 
+      capacitySeated: 40, 
+      hourlyRate: 250,
+      description: "",
+      amenities: "",
+      available: true 
+    },
+    { 
+      id: "space-2", 
+      name: "Garden Room", 
+      capacityStanding: 25, 
+      capacitySeated: 20, 
+      hourlyRate: 120,
+      description: "",
+      amenities: "",
+      available: true 
+    },
   ],
+  // Venue Questions - booking questions asked by AI
+  questions: [
+    { id: "q1", questionText: "How many guests are you expecting?", required: true, category: "guest_info" },
+    { id: "q2", questionText: "What kind of event is this?", required: true, category: "guest_info" },
+    { id: "q3", questionText: "Can I take your name for the booking?", required: true, category: "guest_info" },
+    { id: "q4", questionText: "Will you need catering?", required: false, category: "catering" },
+    { id: "q5", questionText: "Any special requirements?", required: false, category: "requirements" },
+  ],
+  // Venue Policies
+  policies: [
+    { key: "deposit_percentage", value: "50", label: "Deposit Required" },
+    { key: "cancellation_days", value: "7", label: "Cancellation Notice" },
+    { key: "minimum_hours", value: "2", label: "Minimum Hours" },
+  ],
+  // Venue Add-Ons
+  addons: [
+    { id: "addon-1", name: "Catering Package", price: 18, description: "Per person", available: true },
+    { id: "addon-2", name: "DJ Setup", price: 175, description: "", available: true },
+  ],
+  // Opening Hours
   hours: [
-    { day: 'Monday', open: '09:00', close: '18:00', closed: false },
-    { day: 'Tuesday', open: '09:00', close: '18:00', closed: false },
-    { day: 'Wednesday', open: '09:00', close: '18:00', closed: false },
-    { day: 'Thursday', open: '09:00', close: '18:00', closed: false },
-    { day: 'Friday', open: '09:00', close: '20:00', closed: false },
-    { day: 'Saturday', open: '10:00', close: '20:00', closed: false },
+    { day: 'Monday', open: '09:00', close: '23:00', closed: false },
+    { day: 'Tuesday', open: '09:00', close: '23:00', closed: false },
+    { day: 'Wednesday', open: '09:00', close: '23:00', closed: false },
+    { day: 'Thursday', open: '09:00', close: '23:00', closed: false },
+    { day: 'Friday', open: '09:00', close: '23:00', closed: false },
+    { day: 'Saturday', open: '09:00', close: '23:00', closed: false },
     { day: 'Sunday', open: '', close: '', closed: true },
   ],
-  firstMessage: "Hello! Thank you for calling Sarah's Event Hall. How may I help you plan your perfect event today?",
+  // First Message
+  firstMessage: "Hello, thanks for calling Sarah's Event Hall! Are you looking to book a space?",
+  // Calls
   calls: [
-    { id: 1, date: 'Today', time: '14:32', summary: 'Inquiry about wedding availability, June 2026', status: 'handled' },
-    { id: 2, date: 'Today', time: '11:15', summary: 'Corporate event quote request for 50 people', status: 'handled' },
+    { id: 1, date: 'Today', time: '14:32', summary: 'Wedding inquiry - 60 guests, June 2026', status: 'handled' },
+    { id: 2, date: 'Today', time: '11:15', summary: 'Corporate event quote request for 40 people', status: 'handled' },
     { id: 3, date: 'Yesterday', time: '16:45', summary: 'Question about parking facilities', status: 'handled' },
     { id: 4, date: 'Yesterday', time: '10:30', summary: 'Callback requested - missed call', status: 'missed' },
     { id: 5, date: 'Apr 5', time: '09:20', summary: 'Customer escalated to manager - pricing dispute', status: 'transferred' },
-    { id: 6, date: 'Apr 4', time: '15:10', summary: 'Booking confirmed - birthday party, 20 guests', status: 'handled' },
+    { id: 6, date: 'Apr 4', time: '15:10', summary: 'Birthday party booking confirmed - 20 guests', status: 'handled' },
+  ],
+  // Reservations
+  reservations: [
+    { id: 1, customerName: "John Smith", date: "2026-04-15", startTime: "14:00", endTime: "18:00", status: "confirmed", space: "Main Hall", guestCount: 40, customerEmail: "john@email.com", customerPhone: "(555) 111-2222", notes: "Corporate meeting" },
+    { id: 2, customerName: "Emily Johnson", date: "2026-04-20", startTime: "12:00", endTime: "23:00", status: "pending", space: "Main Hall", guestCount: 60, customerEmail: "emily@email.com", customerPhone: "(555) 333-4444", notes: "Wedding reception" },
+    { id: 3, customerName: "Michael Brown", date: "2026-04-10", startTime: "10:00", endTime: "14:00", status: "confirmed", space: "Garden Room", guestCount: 15, customerEmail: "mike@email.com", customerPhone: "(555) 555-6666", notes: "" },
   ],
 };
 
@@ -66,10 +108,14 @@ function saveState() {
 document.addEventListener('DOMContentLoaded', () => {
   updateRestaurantName();
   initDemoTabs();
-  initMenu();
+  initSpaces();
+  initQuestions();
+  initPolicies();
+  initAddons();
   initHours();
   initFirstMessage();
   initCalls();
+  initReservations();
 });
 
 function updateRestaurantName() {
@@ -93,157 +139,184 @@ function initDemoTabs() {
 }
 
 // ============================================
-// Menu Management
+// Spaces Tab
 // ============================================
-let editingItemId = null;
-
-function initMenu() {
-  renderMenu();
-  setupMenuListeners();
+function initSpaces() {
+  renderSpaces();
 }
 
-function renderMenu() {
-  const container = document.getElementById('menu-items');
-  const categories = ['Spaces', 'Packages', 'Per Person'];
-
+function renderSpaces() {
+  const container = document.getElementById('spaces-list');
+  
   let html = '';
-  categories.forEach(cat => {
-    const items = state.menuItems.filter(item => item.category === cat);
-    if (items.length === 0) return;
-
-    html += `<div class="menu-category"><h4>${cat}</h4>`;
-    items.forEach(item => {
-      html += `
-        <div class="menu-item" data-id="${item.id}">
-          <div class="menu-item-info">
-            <label class="availability-toggle">
-              <input type="checkbox" ${item.available ? 'checked' : ''}>
-              <span class="slider"></span>
-            </label>
-            <span class="availability-dot ${item.available ? 'available' : ''}"></span>
-            <span class="menu-item-name">${item.name}</span>
-            <span class="menu-item-price">€${item.price}${item.category === 'Per Person' ? '/person' : ''}</span>
+  state.spaces.forEach(space => {
+    html += `
+      <div class="space-card">
+        <div class="space-header">
+          <h4>${space.name}</h4>
+          <label class="availability-toggle small">
+            <input type="checkbox" ${space.available ? 'checked' : ''} data-id="${space.id}">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="space-details">
+          <div class="space-detail">
+            <span class="label">Standing Capacity</span>
+            <span class="value">${space.capacityStanding}</span>
           </div>
-          <div class="menu-item-actions">
-            <button class="edit-btn" title="Edit">✏️</button>
-            <button class="delete-btn" title="Delete">🗑️</button>
+          <div class="space-detail">
+            <span class="label">Seated Capacity</span>
+            <span class="value">${space.capacitySeated}</span>
+          </div>
+          <div class="space-detail">
+            <span class="label">Hourly Rate</span>
+            <span class="value price">€${space.hourlyRate}</span>
           </div>
         </div>
-      `;
-    });
-    html += '</div>';
+        <div class="space-actions">
+          <button class="edit-btn" data-id="${space.id}">✏️ Edit</button>
+          <button class="delete-btn" data-id="${space.id}">🗑️</button>
+        </div>
+      </div>
+    `;
   });
-
-  const available = state.menuItems.filter(i => i.available).length;
-  const total = state.menuItems.length;
-  document.getElementById('menu-count').textContent = `${available}/${total} items available`;
   
   container.innerHTML = html;
-
-  // Availability toggles
-  document.querySelectorAll('.availability-toggle input').forEach(toggle => {
+  
+  // Toggle availability
+  document.querySelectorAll('.space-card input[type="checkbox"]').forEach(toggle => {
     toggle.addEventListener('change', (e) => {
-      const id = parseInt(e.target.closest('.menu-item').dataset.id);
-      const item = state.menuItems.find(i => i.id === id);
-      if (item) {
-        item.available = e.target.checked;
+      const id = e.target.dataset.id;
+      const space = state.spaces.find(s => s.id === id);
+      if (space) {
+        space.available = e.target.checked;
         saveState();
-        renderMenu();
+        renderSpaces();
       }
     });
   });
-
-  // Edit buttons
-  document.querySelectorAll('.edit-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const id = parseInt(e.target.closest('.menu-item').dataset.id);
-      openEditForm(id);
-    });
-  });
-
-  // Delete buttons
-  document.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const id = parseInt(e.target.closest('.menu-item').dataset.id);
-      if (confirm('Delete this item?')) {
-        state.menuItems = state.menuItems.filter(i => i.id !== id);
-        saveState();
-        renderMenu();
-      }
-    });
-  });
-}
-
-function setupMenuListeners() {
-  document.getElementById('add-item-btn').addEventListener('click', () => {
-    document.getElementById('add-item-form').classList.add('show');
-    document.getElementById('edit-item-form').classList.remove('show');
-  });
-
-  document.getElementById('cancel-add').addEventListener('click', () => {
-    document.getElementById('add-item-form').classList.remove('show');
-    document.getElementById('new-item-name').value = '';
-    document.getElementById('new-item-price').value = '';
-  });
-
-  document.getElementById('confirm-add').addEventListener('click', () => {
-    const name = document.getElementById('new-item-name').value.trim();
-    const price = document.getElementById('new-item-price').value.trim();
-    const category = document.getElementById('new-item-category').value;
-
-    if (!name || !price) return;
-
-    const newId = Math.max(...state.menuItems.map(i => i.id), 0) + 1;
-    state.menuItems.push({ id: newId, name, price, category, available: true });
-    saveState();
-    renderMenu();
-
-    document.getElementById('add-item-form').classList.remove('show');
-    document.getElementById('new-item-name').value = '';
-    document.getElementById('new-item-price').value = '';
-  });
-
-  document.getElementById('cancel-edit').addEventListener('click', () => {
-    document.getElementById('edit-item-form').classList.remove('show');
-    editingItemId = null;
-  });
-
-  document.getElementById('confirm-edit').addEventListener('click', () => {
-    if (!editingItemId) return;
-
-    const name = document.getElementById('edit-item-name').value.trim();
-    const price = document.getElementById('edit-item-price').value.trim();
-    const category = document.getElementById('edit-item-category').value;
-
-    const item = state.menuItems.find(i => i.id === editingItemId);
-    if (item && name && price) {
-      item.name = name;
-      item.price = price;
-      item.category = category;
-      saveState();
-      renderMenu();
-    }
-
-    document.getElementById('edit-item-form').classList.remove('show');
-    editingItemId = null;
-  });
-}
-
-function openEditForm(id) {
-  const item = state.menuItems.find(i => i.id === id);
-  if (!item) return;
-
-  editingItemId = id;
-  document.getElementById('edit-item-name').value = item.name;
-  document.getElementById('edit-item-price').value = item.price;
-  document.getElementById('edit-item-category').value = item.category;
-
-  document.getElementById('edit-item-form').classList.add('show');
-  document.getElementById('add-item-form').classList.remove('show');
 }
 
 // ============================================
-// Hours Management
+// Questions Tab
+// ============================================
+function initQuestions() {
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const container = document.getElementById('questions-list');
+  
+  let html = '';
+  state.questions.forEach((q, idx) => {
+    html += `
+      <div class="question-row">
+        <div class="question-text">${q.questionText}</div>
+        <div class="question-meta">
+          <span class="category">${q.category}</span>
+          <span class="required ${q.required ? 'required-yes' : 'required-no'}">${q.required ? 'Required' : 'Optional'}</span>
+        </div>
+        <div class="question-actions">
+          <button class="edit-btn" data-idx="${idx}">✏️</button>
+          <button class="delete-btn" data-idx="${idx}">🗑️</button>
+        </div>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = html;
+}
+
+// ============================================
+// Policies Tab
+// ============================================
+function initPolicies() {
+  renderPolicies();
+}
+
+function renderPolicies() {
+  const container = document.getElementById('policies-list');
+  
+  let html = '';
+  state.policies.forEach(policy => {
+    html += `
+      <div class="policy-row">
+        <span class="policy-label">${policy.label}</span>
+        <input type="text" class="policy-input" value="${policy.value}" data-key="${policy.key}">
+        <span class="policy-unit">${getPolicyUnit(policy.key)}</span>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = html;
+  
+  // Save on change
+  document.querySelectorAll('.policy-input').forEach(input => {
+    input.addEventListener('change', (e) => {
+      const key = e.target.dataset.key;
+      const policy = state.policies.find(p => p.key === key);
+      if (policy) {
+        policy.value = e.target.value;
+        saveState();
+      }
+    });
+  });
+}
+
+function getPolicyUnit(key) {
+  const units = {
+    deposit_percentage: "%",
+    cancellation_days: "days",
+    minimum_hours: "hrs",
+    after_midnight_surcharge: "%"
+  };
+  return units[key] || "";
+}
+
+// ============================================
+// Add-Ons Tab
+// ============================================
+function initAddons() {
+  renderAddons();
+}
+
+function renderAddons() {
+  const container = document.getElementById('addons-list');
+  
+  let html = '';
+  state.addons.forEach(addon => {
+    html += `
+      <div class="addon-card">
+        <div class="addon-info">
+          <h4>${addon.name}</h4>
+          <p class="addon-price">€${addon.price}${addon.description ? ' - ' + addon.description : ''}</p>
+        </div>
+        <label class="availability-toggle small">
+          <input type="checkbox" ${addon.available ? 'checked' : ''} data-id="${addon.id}">
+          <span class="slider"></span>
+        </label>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = html;
+  
+  // Toggle availability
+  document.querySelectorAll('.addon-card input[type="checkbox"]').forEach(toggle => {
+    toggle.addEventListener('change', (e) => {
+      const id = e.target.dataset.id;
+      const addon = state.addons.find(a => a.id === id);
+      if (addon) {
+        addon.available = e.target.checked;
+        saveState();
+        renderAddons();
+      }
+    });
+  });
+}
+
+// ============================================
+// Hours Tab
 // ============================================
 function initHours() {
   renderHours();
@@ -258,11 +331,11 @@ function renderHours() {
       <div class="hours-row">
         <span class="hours-day">${h.day}</span>
         <div class="hours-times">
-          <input type="time" class="open-time" value="${h.open}" ${h.closed ? 'disabled' : ''}>
+          <input type="time" class="open-time" value="${h.open}" ${h.closed ? 'disabled' : ''} data-idx="${idx}">
           <span style="color: var(--text-dim)">-</span>
-          <input type="time" class="close-time" value="${h.close}" ${h.closed ? 'disabled' : ''}>
+          <input type="time" class="close-time" value="${h.close}" ${h.closed ? 'disabled' : ''} data-idx="${idx}">
           <label class="closed-toggle">
-            <input type="checkbox" class="closed-checkbox" ${h.closed ? 'checked' : ''}>
+            <input type="checkbox" class="closed-checkbox" ${h.closed ? 'checked' : ''} data-idx="${idx}">
             <span>Closed</span>
           </label>
         </div>
@@ -273,22 +346,25 @@ function renderHours() {
   container.innerHTML = html;
 
   // Event listeners
-  document.querySelectorAll('.open-time').forEach((input, idx) => {
+  document.querySelectorAll('.open-time').forEach((input) => {
     input.addEventListener('change', (e) => {
+      const idx = parseInt(e.target.dataset.idx);
       state.hours[idx].open = e.target.value;
       saveState();
     });
   });
 
-  document.querySelectorAll('.close-time').forEach((input, idx) => {
+  document.querySelectorAll('.close-time').forEach((input) => {
     input.addEventListener('change', (e) => {
+      const idx = parseInt(e.target.dataset.idx);
       state.hours[idx].close = e.target.value;
       saveState();
     });
   });
 
-  document.querySelectorAll('.closed-checkbox').forEach((checkbox, idx) => {
+  document.querySelectorAll('.closed-checkbox').forEach((checkbox) => {
     checkbox.addEventListener('change', (e) => {
+      const idx = parseInt(e.target.dataset.idx);
       state.hours[idx].closed = e.target.checked;
       saveState();
       renderHours();
@@ -316,9 +392,13 @@ function initFirstMessage() {
 }
 
 // ============================================
-// Calls (Read-only for demo)
+// Calls Tab (Read-only)
 // ============================================
 function initCalls() {
+  renderCalls();
+}
+
+function renderCalls() {
   const container = document.getElementById('calls-list');
   
   let html = '';
@@ -333,6 +413,55 @@ function initCalls() {
       </div>
     `;
   });
+  
+  container.innerHTML = html;
+}
+
+// ============================================
+// Reservations Tab (Read-only)
+// ============================================
+function initReservations() {
+  renderReservations();
+}
+
+function renderReservations() {
+  const container = document.getElementById('reservations-list');
+  
+  let html = '';
+  state.reservations.forEach(res => {
+    const statusClass = res.status === 'confirmed' ? 'confirmed' : 'pending';
+    html += `
+      <div class="reservation-card">
+        <div class="reservation-header">
+          <span class="customer-name">${res.customerName}</span>
+          <span class="reservation-status ${statusClass}">${res.status}</span>
+        </div>
+        <div class="reservation-details">
+          <div class="detail-row">
+            <span class="label">Date</span>
+            <span class="value">${res.date}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Time</span>
+            <span class="value">${res.startTime} - ${res.endTime}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Space</span>
+            <span class="value">${res.space}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Guests</span>
+            <span class="value">${res.guestCount}</span>
+          </div>
+          ${res.notes ? `<div class="detail-row"><span class="label">Notes</span><span class="value">${res.notes}</span></div>` : ''}
+        </div>
+      </div>
+    `;
+  });
+  
+  if (state.reservations.length === 0) {
+    html = '<p class="empty-state">No reservations yet</p>';
+  }
   
   container.innerHTML = html;
 }
