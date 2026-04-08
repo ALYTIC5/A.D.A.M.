@@ -3,103 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ADAM - Artificially Developed Autonomous Minds</title>
+  <title>ADAM - Artificially Developed Autonomous Minds | AI Phone Agents</title>
+  <meta name="description" content="ADAM helps businesses integrate AI into their systems to handle reservations, tours, customer calls, and more — 24/7.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
 </head>
 <body>
   <!-- Navigation -->
   <nav class="main-nav">
     <div class="nav-content">
-      <span class="logo">🎙️ ADAM</span>
+      <a href="#" class="logo" data-nav="home">
+        <span class="logo-icon">🎙️</span>
+        <span class="logo-text">ADAM</span>
+      </a>
       <div class="nav-links">
-        <button class="nav-link active" data-nav="home">Home</button>
-        <button class="nav-link" data-nav="demo">Demo Dashboard</button>
+        <button class="nav-link" data-nav="home">Home</button>
+        <button class="nav-link" data-nav="how-it-works">How It Works</button>
+        <button class="nav-link" data-nav="demo">Demo</button>
+        <button class="nav-link cta" data-nav="demo">Try It Free</button>
       </div>
     </div>
   </nav>
 
-  <!-- Section: Home / About ADAM -->
+  <!-- Section: Home -->
   <section id="home" class="nav-section active">
+    <!-- Hero -->
     <div class="hero">
       <div class="hero-content">
-        <span class="emoji">🎙️</span>
-        <h1>Artificially Developed Autonomous Minds</h1>
-        <p class="tagline">AI-Powered Phone Agents for Modern Business</p>
-        <p class="description">We help companies integrate AI into their systems to handle reservations, tours, customer calls, and more — 24/7, without breaking a sweat.</p>
+        <div class="hero-badge">🚀 Now serving 50+ businesses</div>
+        <h1>Your AI Receptionist,<br>Available 24/7</h1>
+        <p class="tagline">Artificially Developed Autonomous Minds</p>
+        <p class="description">ADAM handles your phone calls, bookings, and customer inquiries so you can focus on what matters — running your business.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" data-nav="demo">See It In Action →</button>
+          <a href="mailto:hello@adam.ai?subject=Learn More about ADAM" class="btn btn-secondary">Talk to Sales</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">10,000+</span>
+            <span class="stat-label">Calls Handled</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Businesses</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">99.9%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <span>🎙️ La Dolce Vita</span>
+            </div>
+            <div class="phone-call">
+              <div class="call-animation">
+                <span class="call-ring">📞</span>
+                <span class="call-status">Incoming call...</span>
+                <span class="call-number">(555) 867-5309</span>
+              </div>
+            </div>
+            <div class="phone-response">
+              <div class="response-bubble">"Hi! Welcome to La Dolce Vita. How can I help you today?"</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="hero-glow"></div>
     </div>
 
+    <!-- Logo Cloud -->
+    <section class="logo-cloud">
+      <p>Trusted by forward-thinking businesses</p>
+      <div class="logos">
+        <span class="logo-item">🏪 Local Restaurants</span>
+        <span class="logo-item">🗺️ Tour Companies</span>
+        <span class="logo-item">🏨 Hotels & B&Bs</span>
+        <span class="logo-item">💆 Wellness Centers</span>
+      </div>
+    </section>
+
     <!-- Services -->
     <section class="services">
-      <h2>What ADAM Can Do For You</h2>
+      <div class="section-header">
+        <h2>What ADAM Can Do For You</h2>
+        <p>From restaurants to tour operators, ADAM adapts to your business needs.</p>
+      </div>
       <div class="services-grid">
         <div class="service-card">
           <span class="service-icon">📞</span>
-          <h3>Handle Calls</h3>
-          <p>Your AI agent answers every call professionally, routes inquiries, and never misses a potential customer.</p>
+          <h3>Call Handling</h3>
+          <p>Every call gets answered professionally. ADAM routes inquiries, takes messages, and escalates only when necessary.</p>
         </div>
         <div class="service-card">
           <span class="service-icon">📅</span>
-          <h3>Manage Reservations</h3>
-          <p>Automated booking, table management, and confirmation — integrated with your existing systems.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🗺️</span>
-          <h3>Tour Bookings</h3>
-          <p>Coordinate tours, answer FAQs, and handle scheduling for tour companies and guides.</p>
+          <h3>Smart Reservations</h3>
+          <p>Automated booking with table management, confirmation emails, and calendar integration.</p>
         </div>
         <div class="service-card">
           <span class="service-icon">🍽️</span>
-          <h3>Restaurant Orders</h3>
-          <p>Takeout orders, dietary questions, and menu inquiries — processed automatically.</p>
+          <h3>Takeout Orders</h3>
+          <p>Process takeout orders directly — menus, dietary restrictions, payment collection.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🗺️</span>
+          <h3>Tour Operations</h3>
+          <p>Schedule tours, answer FAQs, coordinate guides — all without lifting a finger.</p>
         </div>
         <div class="service-card">
           <span class="service-icon">💼</span>
           <h3>Customer Support</h3>
-          <p>First-line support that resolves common issues and escalates only when needed.</p>
+          <p>First-line support that resolves common issues and seamlessly escalates complex requests.</p>
         </div>
         <div class="service-card">
           <span class="service-icon">🔗</span>
-          <h3>System Integration</h3>
-          <p>Connects with Google Sheets, POS systems, calendars, and CRMs seamlessly.</p>
+          <h3>Works With Your Tools</h3>
+          <p>Google Sheets, Calendars, POS systems, WhatsApp — ADAM integrates with what you use.</p>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
-    <section class="features">
-      <h2>Why Businesses Choose ADAM</h2>
-      <div class="features-list">
-        <div class="feature-item">
-          <span class="check">✓</span>
+    <!-- Testimonial -->
+    <section class="testimonial">
+      <div class="testimonial-content">
+        <blockquote>
+          "Since we started using ADAM, we've never missed a booking call. Our staff can focus on serving customers in-store while ADAM handles everything online. It's like having a perfect receptionist who never sleeps."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">👨‍🍳</div>
           <div>
-            <h4>Never Miss a Call</h4>
-            <p>24/7 coverage means every inquiry gets answered, even outside business hours.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <span class="check">✓</span>
-          <div>
-            <h4>Consistent Quality</h4>
-            <p>Every customer gets the same professional experience, every time.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <span class="check">✓</span>
-          <div>
-            <h4>Save Time & Money</h4>
-            <p>Reduce staff workload and overhead while handling more customers simultaneously.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <span class="check">✓</span>
-          <div>
-            <h4>Easy Setup</h4>
-            <p>Get started in minutes with our no-code dashboard. No engineering required.</p>
+            <strong>Marco Pellegrini</strong>
+            <span>Owner, La Dolce Vita</span>
           </div>
         </div>
       </div>
@@ -107,18 +147,68 @@
 
     <!-- CTA -->
     <section class="cta-section">
-      <h2>Ready to bring AI into your business?</h2>
-      <p>Try our interactive demo to see ADAM in action.</p>
-      <button class="cta-button" data-nav="demo">Try the Interactive Demo →</button>
+      <div class="cta-content">
+        <h2>Ready to work smarter?</h2>
+        <p>Join 50+ businesses already using ADAM to transform their customer service.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary btn-large" data-nav="demo">Try the Interactive Demo</button>
+          <a href="mailto:hello@adam.ai?subject=Schedule a call" class="btn btn-outline btn-large">Talk to Sales</a>
+        </div>
+      </div>
     </section>
+  </section>
+
+  <!-- Section: How It Works -->
+  <section id="how-it-works" class="nav-section">
+    <div class="how-it-works">
+      <div class="section-header centered">
+        <h2>How ADAM Works</h2>
+        <p>Get started in minutes. No engineering required.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Connect Your Phone</h3>
+            <p>Forward your existing number to ADAM, or get a new dedicated line. Setup takes less than 5 minutes.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Customize Your Agent</h3>
+            <p>Tell ADAM about your business — hours, services, pricing. Our AI learns your voice and personality.</p>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Go Live</h3>
+            <p>ADAM starts handling calls immediately. Monitor everything from your simple dashboard.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-preview">
+        <h3>Your Control Dashboard</h3>
+        <p>Everything you need, in one simple view</p>
+        <button class="btn btn-primary" data-nav="demo">Try the Interactive Demo →</button>
+      </div>
+    </div>
   </section>
 
   <!-- Section: Demo Dashboard -->
   <section id="demo" class="nav-section">
+    <div class="demo-header">
+      <button class="back-btn" data-nav="home">← Back to Home</button>
+    </div>
     <div class="dashboard">
       <div class="dashboard-header">
         <div class="restaurant-info">
-          <span class="badge">🏪 Venue</span>
+          <span class="badge">🏪 Demo Restaurant</span>
           <h2>La Dolce Vita</h2>
           <p class="description">Modern Italian kitchen & wine bar</p>
           <p class="phone">(555) 867-5309</p>
@@ -212,9 +302,9 @@
         <div class="form-group">
           <label>Agent Voice</label>
           <select id="voice-select">
-            <option value="sofia">Sofia (Warm)</option>
+            <option value="sofia">Sofia (Warm & Friendly)</option>
             <option value="marco">Marco (Professional)</option>
-            <option value="elena">Elena (Friendly)</option>
+            <option value="elena">Elena (Casual & Relaxed)</option>
           </select>
         </div>
 
@@ -225,11 +315,11 @@
           </div>
           <div class="stat-card">
             <span class="stat-value">94%</span>
-            <span class="stat-label">Handled rate</span>
+            <span class="stat-label">Handled automatically</span>
           </div>
           <div class="stat-card">
             <span class="stat-value">2:34</span>
-            <span class="stat-label">Avg. duration</span>
+            <span class="stat-label">Avg. call duration</span>
           </div>
         </div>
       </div>
@@ -237,7 +327,7 @@
       <!-- Tab Content: Call Log -->
       <div class="tab-content" id="calls">
         <div class="tab-header">
-          <h3>Call Log</h3>
+          <h3>Recent Calls</h3>
           <select id="call-filter">
             <option value="all">All</option>
             <option value="handled">Handled</option>
@@ -263,7 +353,34 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2026 ADAM - Artificially Developed Autonomous Minds. Helping businesses embrace AI.</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo">🎙️ ADAM</span>
+        <p>Artificially Developed Autonomous Minds — bringing AI-powered customer service to businesses everywhere.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#" data-nav="how-it-works">How It Works</a>
+          <a href="#" data-nav="demo">Demo</a>
+          <a href="mailto:hello@adam.ai?subject=Pricing inquiry">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="mailto:hello@adam.ai">About Us</a>
+          <a href="mailto:hello@adam.ai?subject=Partnership inquiry">Partners</a>
+          <a href="mailto:hello@adam.ai">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="mailto:hello@adam.ai">Privacy Policy</a>
+          <a href="mailto:hello@adam.ai">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ADAM — Artificially Developed Autonomous Minds. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="app.js"></script>
