@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADAM - Artificially Developed Autonomous Minds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-content">
+      <span class="logo">🎙️ ADAM</span>
+      <div class="nav-links">
+        <button class="nav-link active" data-nav="home">Home</button>
+        <button class="nav-link" data-nav="demo">Demo Dashboard</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Section: Home / About ADAM -->
+  <section id="home" class="nav-section active">
+    <div class="hero">
+      <div class="hero-content">
+        <span class="emoji">🎙️</span>
+        <h1>Artificially Developed Autonomous Minds</h1>
+        <p class="tagline">AI-Powered Phone Agents for Modern Business</p>
+        <p class="description">We help companies integrate AI into their systems to handle reservations, tours, customer calls, and more — 24/7, without breaking a sweat.</p>
+      </div>
+      <div class="hero-glow"></div>
+    </div>
+
+    <!-- Services -->
+    <section class="services">
+      <h2>What ADAM Can Do For You</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">📞</span>
+          <h3>Handle Calls</h3>
+          <p>Your AI agent answers every call professionally, routes inquiries, and never misses a potential customer.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📅</span>
+          <h3>Manage Reservations</h3>
+          <p>Automated booking, table management, and confirmation — integrated with your existing systems.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🗺️</span>
+          <h3>Tour Bookings</h3>
+          <p>Coordinate tours, answer FAQs, and handle scheduling for tour companies and guides.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🍽️</span>
+          <h3>Restaurant Orders</h3>
+          <p>Takeout orders, dietary questions, and menu inquiries — processed automatically.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">💼</span>
+          <h3>Customer Support</h3>
+          <p>First-line support that resolves common issues and escalates only when needed.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🔗</span>
+          <h3>System Integration</h3>
+          <p>Connects with Google Sheets, POS systems, calendars, and CRMs seamlessly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <h2>Why Businesses Choose ADAM</h2>
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="check">✓</span>
+          <div>
+            <h4>Never Miss a Call</h4>
+            <p>24/7 coverage means every inquiry gets answered, even outside business hours.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="check">✓</span>
+          <div>
+            <h4>Consistent Quality</h4>
+            <p>Every customer gets the same professional experience, every time.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="check">✓</span>
+          <div>
+            <h4>Save Time & Money</h4>
+            <p>Reduce staff workload and overhead while handling more customers simultaneously.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="check">✓</span>
+          <div>
+            <h4>Easy Setup</h4>
+            <p>Get started in minutes with our no-code dashboard. No engineering required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2>Ready to bring AI into your business?</h2>
+      <p>Try our interactive demo to see ADAM in action.</p>
+      <button class="cta-button" data-nav="demo">Try the Interactive Demo →</button>
+    </section>
+  </section>
+
+  <!-- Section: Demo Dashboard -->
+  <section id="demo" class="nav-section">
+    <div class="dashboard">
+      <div class="dashboard-header">
+        <div class="restaurant-info">
+          <span class="badge">🏪 Venue</span>
+          <h2>La Dolce Vita</h2>
+          <p class="description">Modern Italian kitchen & wine bar</p>
+          <p class="phone">(555) 867-5309</p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" data-tab="menu">Menu</button>
+        <button class="tab" data-tab="hours">Hours</button>
+        <button class="tab" data-tab="agent">AI Agent</button>
+        <button class="tab" data-tab="calls">Call Log</button>
+      </div>
+
+      <!-- Tab Content: Menu -->
+      <div class="tab-content active" id="menu">
+        <div class="tab-header">
+          <h3>Menu Management</h3>
+          <span class="count" id="menu-count">6/8 items available</span>
+        </div>
+        <button class="add-button" id="add-item-btn">+ Add Item</button>
+        
+        <div class="add-form" id="add-item-form" style="display: none;">
+          <select id="new-item-category">
+            <option value="Starters">Starters</option>
+            <option value="Mains">Mains</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Drinks">Drinks</option>
+          </select>
+          <input type="text" id="new-item-name" placeholder="Item name">
+          <input type="text" id="new-item-price" placeholder="Price (e.g. 12.99)">
+          <div class="form-buttons">
+            <button class="cancel-btn" id="cancel-add">Cancel</button>
+            <button class="save-btn" id="confirm-add">Add Item</button>
+          </div>
+        </div>
+
+        <div class="add-form" id="edit-item-form" style="display: none;">
+          <select id="edit-item-category">
+            <option value="Starters">Starters</option>
+            <option value="Mains">Mains</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Drinks">Drinks</option>
+          </select>
+          <input type="text" id="edit-item-name" placeholder="Item name">
+          <input type="text" id="edit-item-price" placeholder="Price">
+          <div class="form-buttons">
+            <button class="cancel-btn" id="cancel-edit">Cancel</button>
+            <button class="save-btn" id="confirm-edit">Save</button>
+          </div>
+        </div>
+
+        <div id="menu-items"></div>
+      </div>
+
+      <!-- Tab Content: Hours -->
+      <div class="tab-content" id="hours">
+        <div class="tab-header">
+          <h3>Opening Hours</h3>
+        </div>
+        <div class="hours-grid" id="hours-grid"></div>
+      </div>
+
+      <!-- Tab Content: AI Agent -->
+      <div class="tab-content" id="agent">
+        <div class="tab-header">
+          <h3>AI Agent Settings</h3>
+        </div>
+        
+        <div class="agent-status">
+          <div class="status-row">
+            <span>Agent Status</span>
+            <label class="toggle">
+              <input type="checkbox" id="agent-status-toggle" checked>
+              <span class="slider"></span>
+            </label>
+            <span class="status-text active" id="status-text">Active</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Custom Greeting</label>
+          <textarea id="greeting-text">Thank you for calling La Dolce Vita, how can I help you today?</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Special Instructions</label>
+          <textarea id="special-instructions">Always mention our daily special is the truffle pasta. Ask if they want to make a reservation.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Agent Voice</label>
+          <select id="voice-select">
+            <option value="sofia">Sofia (Warm)</option>
+            <option value="marco">Marco (Professional)</option>
+            <option value="elena">Elena (Friendly)</option>
+          </select>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-value">47</span>
+            <span class="stat-label">Calls this week</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">94%</span>
+            <span class="stat-label">Handled rate</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">2:34</span>
+            <span class="stat-label">Avg. duration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Call Log -->
+      <div class="tab-content" id="calls">
+        <div class="tab-header">
+          <h3>Call Log</h3>
+          <select id="call-filter">
+            <option value="all">All</option>
+            <option value="handled">Handled</option>
+            <option value="transferred">Transferred</option>
+            <option value="missed">Missed</option>
+          </select>
+        </div>
+        <table class="call-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Summary</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="call-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 ADAM - Artificially Developed Autonomous Minds. Helping businesses embrace AI.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
