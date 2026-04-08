@@ -21,7 +21,7 @@
       </a>
       <div class="nav-links">
         <a href="#features" class="nav-link">Features</a>
-        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#demo" class="nav-link">Demo</a>
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="mailto:hello@adam.ai" class="nav-link cta">Get Started</a>
       </div>
@@ -37,8 +37,8 @@
       <p class="tagline">Artificially Developed Autonomous Minds</p>
       <p class="description">ADAM handles your phone calls, bookings, and customer inquiries so you can focus on what matters — running your business.</p>
       <div class="hero-buttons">
-        <a href="mailto:hello@adam.ai?subject=Request Demo" class="btn btn-primary">Request a Demo →</a>
-        <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
+        <a href="#demo" class="btn btn-primary">Try the Demo →</a>
+        <a href="mailto:hello@adam.ai?subject=Request Demo" class="btn btn-secondary">Talk to Sales</a>
       </div>
       <div class="hero-stats">
         <div class="stat">
@@ -52,6 +52,26 @@
         <div class="stat">
           <span class="stat-number">99.9%</span>
           <span class="stat-label">Uptime</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <span class="phone-icon">🍕</span>
+            <span>Sarah's Pizza</span>
+          </div>
+          <div class="phone-call">
+            <div class="call-animation">
+              <span class="call-ring">📞</span>
+              <span class="call-status">Incoming call...</span>
+              <span class="call-number">(555) 123-4567</span>
+            </div>
+          </div>
+          <div class="phone-response">
+            <div class="response-bubble">"Hi! Welcome to Sarah's Pizza. How can I help you today?"</div>
+          </div>
         </div>
       </div>
     </div>
@@ -97,35 +117,202 @@
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section id="how-it-works" class="how-it-works">
+  <!-- Interactive Demo -->
+  <section id="demo" class="demo-section">
     <div class="section-header centered">
-      <h2>How ADAM Works</h2>
-      <p>Get started in minutes. No engineering required.</p>
+      <h2>See It In Action</h2>
+      <p>This is what your clients will see. Try the interactive demo below.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">01</div>
-        <div class="step-content">
-          <h3>Connect Your Phone</h3>
-          <p>Forward your existing number to ADAM, or get a new dedicated line. Setup takes less than 5 minutes.</p>
+    
+    <div class="demo-tabs">
+      <button class="demo-tab active" data-demo="menu">Menu</button>
+      <button class="demo-tab" data-demo="hours">Hours</button>
+      <button class="demo-tab" data-demo="firstMessage">First Message</button>
+      <button class="demo-tab" data-demo="calls">Calls</button>
+    </div>
+
+    <div class="demo-content active" id="demo-menu">
+      <div class="demo-header-bar">
+        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      
+      <div class="menu-header">
+        <h3>Menu Items</h3>
+        <span class="item-count">8 items</span>
+      </div>
+      
+      <div class="menu-category">
+        <h4>🍕 Pizzas</h4>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <span class="availability-dot available"></span>
+            <span class="menu-item-name">Margherita</span>
+          </div>
+          <span class="menu-item-price">€12.00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <span class="availability-dot available"></span>
+            <span class="menu-item-name">Pepperoni</span>
+          </div>
+          <span class="menu-item-price">€14.00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <span class="availability-dot"></span>
+            <span class="menu-item-name">BBQ Chicken</span>
+          </div>
+          <span class="menu-item-price">€15.50</span>
         </div>
       </div>
-      <div class="step-connector"></div>
-      <div class="step">
-        <div class="step-number">02</div>
-        <div class="step-content">
-          <h3>Customize Your Agent</h3>
-          <p>Tell ADAM about your business — hours, services, pricing. Our AI learns your voice and personality.</p>
+      
+      <div class="menu-category">
+        <h4>🥗 Salads</h4>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <span class="availability-dot available"></span>
+            <span class="menu-item-name">Caesar Salad</span>
+          </div>
+          <span class="menu-item-price">€8.00</span>
         </div>
       </div>
-      <div class="step-connector"></div>
-      <div class="step">
-        <div class="step-number">03</div>
-        <div class="step-content">
-          <h3>Go Live</h3>
-          <p>ADAM starts handling calls immediately. Monitor everything from your simple dashboard.</p>
+      
+      <div class="menu-category">
+        <h4>🍝 Pasta</h4>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <span class="availability-dot available"></span>
+            <span class="menu-item-name">Spaghetti Carbonara</span>
+          </div>
+          <span class="menu-item-price">€13.00</span>
         </div>
+      </div>
+      
+      <div class="demo-note">
+        💡 In the real app, you can edit items, add new ones, and toggle availability
+      </div>
+    </div>
+
+    <div class="demo-content" id="demo-hours">
+      <div class="demo-header-bar">
+        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      
+      <div class="hours-header">
+        <h3>Opening Hours</h3>
+      </div>
+      
+      <div class="hours-list">
+        <div class="hours-row">
+          <span class="hours-day">Monday</span>
+          <span class="hours-time">Closed</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Tuesday</span>
+          <span class="hours-time">11:00 - 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Wednesday</span>
+          <span class="hours-time">11:00 - 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Thursday</span>
+          <span class="hours-time">11:00 - 22:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Friday</span>
+          <span class="hours-time">11:00 - 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Saturday</span>
+          <span class="hours-time">12:00 - 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Sunday</span>
+          <span class="hours-time">12:00 - 21:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-content" id="demo-firstMessage">
+      <div class="demo-header-bar">
+        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      
+      <div class="first-message-header">
+        <h3>AI Greeting</h3>
+      </div>
+      
+      <div class="first-message-box">
+        <p>"Hi! Welcome to Sarah's Pizza. How can I help you today?"</p>
+      </div>
+      
+      <div class="demo-note">
+        💡 The AI uses this greeting when answering incoming calls
+      </div>
+    </div>
+
+    <div class="demo-content" id="demo-calls">
+      <div class="demo-header-bar">
+        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="sync-status">✓ Synced to AI</span>
+      </div>
+      
+      <div class="calls-header">
+        <h3>Recent Calls</h3>
+        <span class="call-count">6 calls</span>
+      </div>
+      
+      <div class="calls-list">
+        <div class="call-row">
+          <div class="call-info">
+            <span class="call-time">Today, 18:32</span>
+            <span class="call-summary">Table for 4, Saturday evening</span>
+          </div>
+          <span class="call-status handled">Handled</span>
+        </div>
+        <div class="call-row">
+          <div class="call-info">
+            <span class="call-time">Today, 17:15</span>
+            <span class="call-summary">Takeout order - 2 margheritas</span>
+          </div>
+          <span class="call-status handled">Handled</span>
+        </div>
+        <div class="call-row">
+          <div class="call-info">
+            <span class="call-time">Yesterday, 19:45</span>
+            <span class="call-summary">Question about gluten-free options</span>
+          </div>
+          <span class="call-status handled">Handled</span>
+        </div>
+        <div class="call-row">
+          <div class="call-info">
+            <span class="call-time">Yesterday, 14:20</span>
+            <span class="call-summary">Complaint about delivery time</span>
+          </div>
+          <span class="call-status transferred">Transferred</span>
+        </div>
+        <div class="call-row">
+          <div class="call-info">
+            <span class="call-time">Apr 5, 20:10</span>
+            <span class="call-summary">Wrong number</span>
+          </div>
+          <span class="call-status missed">Missed</span>
+        </div>
+        <div class="call-row">
+          <div class="call-info">
+            <span class="call-time">Apr 5, 12:30</span>
+            <span class="call-summary">Reservation for 2, tonight</span>
+          </div>
+          <span class="call-status handled">Handled</span>
+        </div>
+      </div>
+      
+      <div class="demo-note">
+        💡 Calls are automatically logged with summaries. You can flag calls for review.
       </div>
     </div>
   </section>
@@ -139,8 +326,8 @@
       <div class="testimonial-author">
         <div class="author-avatar">👨‍🍳</div>
         <div>
-          <strong>Marco Pellegrini</strong>
-          <span>Owner, La Dolce Vita</span>
+          <strong>Sarah Mitchell</strong>
+          <span>Owner, Sarah's Pizza</span>
         </div>
       </div>
     </div>
@@ -233,5 +420,33 @@
       <p>© 2026 ADAM — Artificially Developed Autonomous Minds. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Demo tab switching
+    document.querySelectorAll('.demo-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const demo = tab.dataset.demo;
+        
+        // Update tabs
+        document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Update content
+        document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('demo-' + demo).classList.add('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
