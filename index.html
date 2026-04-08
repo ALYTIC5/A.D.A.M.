@@ -58,18 +58,18 @@
       <div class="phone-mockup">
         <div class="phone-screen">
           <div class="phone-header">
-            <span class="phone-icon">🍕</span>
-            <span>Sarah's Pizza</span>
+            <span class="phone-icon">🏛️</span>
+            <span id="restaurant-name">Sarah's Event Hall</span>
           </div>
           <div class="phone-call">
             <div class="call-animation">
               <span class="call-ring">📞</span>
               <span class="call-status">Incoming call...</span>
-              <span class="call-number">(555) 123-4567</span>
+              <span class="call-number" id="restaurant-phone">(555) 987-6543</span>
             </div>
           </div>
           <div class="phone-response">
-            <div class="response-bubble">"Hi! Welcome to Sarah's Pizza. How can I help you today?"</div>
+            <div class="response-bubble">"Hello! Thank you for calling Sarah's Event Hall. How may I help you plan your perfect event today?"</div>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
   <section id="features" class="features">
     <div class="section-header">
       <h2>What ADAM Can Do For You</h2>
-      <p>From restaurants to tour operators, ADAM adapts to your business needs.</p>
+      <p>From event venues to tour operators, ADAM adapts to your business needs.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
@@ -91,12 +91,12 @@
       <div class="feature-card">
         <span class="feature-icon">📅</span>
         <h3>Smart Reservations</h3>
-        <p>Automated booking with table management, confirmation emails, and calendar integration.</p>
+        <p>Automated booking with calendar management, confirmation emails, and availability tracking.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">🍽️</span>
-        <h3>Takeout Orders</h3>
-        <p>Process takeout orders directly — menus, dietary restrictions, payment collection.</p>
+        <span class="feature-icon">🏛️</span>
+        <h3>Venue Management</h3>
+        <p>Handle venue inquiries, space availability, pricing questions — all without lifting a finger.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🗺️</span>
@@ -124,7 +124,7 @@
     </div>
     
     <div class="demo-tabs">
-      <button class="demo-tab active" data-demo="menu">Menu</button>
+      <button class="demo-tab active" data-demo="menu">Venues & Pricing</button>
       <button class="demo-tab" data-demo="hours">Hours</button>
       <button class="demo-tab" data-demo="firstMessage">First Message</button>
       <button class="demo-tab" data-demo="calls">Calls</button>
@@ -133,12 +133,12 @@
     <!-- Menu Tab -->
     <div class="demo-content active" id="demo-menu">
       <div class="demo-header-bar">
-        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
       
       <div class="menu-header">
-        <h3>Menu Items</h3>
+        <h3>Venue Spaces & Packages</h3>
         <span class="item-count" id="menu-count">8 items available</span>
       </div>
       
@@ -146,14 +146,12 @@
       
       <div class="add-form" id="add-item-form">
         <select id="new-item-category">
-          <option value="Pizzas">Pizzas</option>
-          <option value="Salads">Salads</option>
-          <option value="Pasta">Pasta</option>
-          <option value="Desserts">Desserts</option>
-          <option value="Sides">Sides</option>
+          <option value="Spaces">Spaces</option>
+          <option value="Packages">Packages</option>
+          <option value="Per Person">Per Person</option>
         </select>
         <input type="text" id="new-item-name" placeholder="Item name">
-        <input type="text" id="new-item-price" placeholder="Price (e.g. 12.00)">
+        <input type="text" id="new-item-price" placeholder="Price">
         <div class="form-buttons">
           <button class="cancel-btn" id="cancel-add">Cancel</button>
           <button class="save-btn" id="confirm-add">Add</button>
@@ -162,11 +160,9 @@
 
       <div class="add-form" id="edit-item-form">
         <select id="edit-item-category">
-          <option value="Pizzas">Pizzas</option>
-          <option value="Salads">Salads</option>
-          <option value="Pasta">Pasta</option>
-          <option value="Desserts">Desserts</option>
-          <option value="Sides">Sides</option>
+          <option value="Spaces">Spaces</option>
+          <option value="Packages">Packages</option>
+          <option value="Per Person">Per Person</option>
         </select>
         <input type="text" id="edit-item-name" placeholder="Item name">
         <input type="text" id="edit-item-price" placeholder="Price">
@@ -186,7 +182,7 @@
     <!-- Hours Tab -->
     <div class="demo-content" id="demo-hours">
       <div class="demo-header-bar">
-        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
       
@@ -204,7 +200,7 @@
     <!-- First Message Tab -->
     <div class="demo-content" id="demo-firstMessage">
       <div class="demo-header-bar">
-        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
       
@@ -221,14 +217,14 @@
       </div>
       
       <div class="demo-note">
-        💡 This is the first thing callers hear when the AI answers. Keep it short and friendly!
+        💡 This is the first thing callers hear when the AI answers. Keep it short and professional!
       </div>
     </div>
 
     <!-- Calls Tab -->
     <div class="demo-content" id="demo-calls">
       <div class="demo-header-bar">
-        <span class="badge">🍕 Sarah's Pizza</span>
+        <span class="badge">🏛️ Sarah's Event Hall</span>
         <span class="sync-status">✓ Synced to AI</span>
       </div>
       
@@ -249,13 +245,13 @@
   <section class="testimonial">
     <div class="testimonial-content">
       <blockquote>
-        "Since we started using ADAM, we've never missed a booking call. Our staff can focus on serving customers in-store while ADAM handles everything online. It's like having a perfect receptionist who never sleeps."
+        "Since we started using ADAM, we've never missed an inquiry. Our staff can focus on running events while ADAM handles all the phone calls and booking questions. It's like having a perfect receptionist who never sleeps."
       </blockquote>
       <div class="testimonial-author">
-        <div class="author-avatar">👨‍🍳</div>
+        <div class="author-avatar">👩‍💼</div>
         <div>
           <strong>Sarah Mitchell</strong>
-          <span>Owner, Sarah's Pizza</span>
+          <span>Owner, Sarah's Event Hall</span>
         </div>
       </div>
     </div>

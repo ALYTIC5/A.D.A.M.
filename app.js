@@ -6,37 +6,37 @@ const STORAGE_KEY = 'adam_demo_state';
 
 const defaultState = {
   restaurant: {
-    name: "Sarah's Pizza",
-    description: "Authentic Italian pizza & pasta",
-    phone: "(555) 123-4567",
+    name: "Sarah's Event Hall",
+    description: "Premium venue for weddings, corporate events & celebrations",
+    phone: "(555) 987-6543",
   },
   menuItems: [
-    { id: 1, name: 'Margherita', price: '12.00', category: 'Pizzas', available: true },
-    { id: 2, name: 'Pepperoni', price: '14.00', category: 'Pizzas', available: true },
-    { id: 3, name: 'BBQ Chicken', price: '15.50', category: 'Pizzas', available: false },
-    { id: 4, name: 'Caesar Salad', price: '8.00', category: 'Salads', available: true },
-    { id: 5, name: 'Spaghetti Carbonara', price: '13.00', category: 'Pasta', available: true },
-    { id: 6, name: 'Lasagna', price: '14.50', category: 'Pasta', available: true },
-    { id: 7, name: 'Tiramisu', price: '7.00', category: 'Desserts', available: true },
-    { id: 8, name: 'Garlic Bread', price: '5.00', category: 'Sides', available: true },
+    { id: 1, name: 'Grand Ballroom', price: '500', category: 'Spaces', available: true },
+    { id: 2, name: 'Garden Terrace', price: '350', category: 'Spaces', available: true },
+    { id: 3, name: 'Executive Boardroom', price: '200', category: 'Spaces', available: true },
+    { id: 4, name: 'Wedding Package', price: '2500', category: 'Packages', available: true },
+    { id: 5, name: 'Corporate Day Package', price: '1200', category: 'Packages', available: true },
+    { id: 6, name: 'Birthday Party Package', price: '800', category: 'Packages', available: true },
+    { id: 7, name: 'Catering - Buffet', price: '35', category: 'Per Person', available: true },
+    { id: 8, name: 'Catering - Plated', price: '55', category: 'Per Person', available: false },
   ],
   hours: [
-    { day: 'Monday', open: '', close: '', closed: true },
-    { day: 'Tuesday', open: '11:00', close: '22:00', closed: false },
-    { day: 'Wednesday', open: '11:00', close: '22:00', closed: false },
-    { day: 'Thursday', open: '11:00', close: '22:00', closed: false },
-    { day: 'Friday', open: '11:00', close: '23:00', closed: false },
-    { day: 'Saturday', open: '12:00', close: '23:00', closed: false },
-    { day: 'Sunday', open: '12:00', close: '21:00', closed: false },
+    { day: 'Monday', open: '09:00', close: '18:00', closed: false },
+    { day: 'Tuesday', open: '09:00', close: '18:00', closed: false },
+    { day: 'Wednesday', open: '09:00', close: '18:00', closed: false },
+    { day: 'Thursday', open: '09:00', close: '18:00', closed: false },
+    { day: 'Friday', open: '09:00', close: '20:00', closed: false },
+    { day: 'Saturday', open: '10:00', close: '20:00', closed: false },
+    { day: 'Sunday', open: '', close: '', closed: true },
   ],
-  firstMessage: "Hi! Welcome to Sarah's Pizza. How can I help you today?",
+  firstMessage: "Hello! Thank you for calling Sarah's Event Hall. How may I help you plan your perfect event today?",
   calls: [
-    { id: 1, date: 'Today', time: '18:32', summary: 'Table for 4, Saturday evening', status: 'handled' },
-    { id: 2, date: 'Today', time: '17:15', summary: 'Takeout order - 2 margheritas', status: 'handled' },
-    { id: 3, date: 'Yesterday', time: '19:45', summary: 'Question about gluten-free options', status: 'handled' },
-    { id: 4, date: 'Yesterday', time: '14:20', summary: 'Complaint about delivery time', status: 'transferred' },
-    { id: 5, date: 'Apr 5', time: '20:10', summary: 'Wrong number', status: 'missed' },
-    { id: 6, date: 'Apr 5', time: '12:30', summary: 'Reservation for 2, tonight', status: 'handled' },
+    { id: 1, date: 'Today', time: '14:32', summary: 'Inquiry about wedding availability, June 2026', status: 'handled' },
+    { id: 2, date: 'Today', time: '11:15', summary: 'Corporate event quote request for 50 people', status: 'handled' },
+    { id: 3, date: 'Yesterday', time: '16:45', summary: 'Question about parking facilities', status: 'handled' },
+    { id: 4, date: 'Yesterday', time: '10:30', summary: 'Callback requested - missed call', status: 'missed' },
+    { id: 5, date: 'Apr 5', time: '09:20', summary: 'Customer escalated to manager - pricing dispute', status: 'transferred' },
+    { id: 6, date: 'Apr 4', time: '15:10', summary: 'Booking confirmed - birthday party, 20 guests', status: 'handled' },
   ],
 };
 
@@ -64,12 +64,18 @@ function saveState() {
 // Demo Tab Switching
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+  updateRestaurantName();
   initDemoTabs();
   initMenu();
   initHours();
   initFirstMessage();
   initCalls();
 });
+
+function updateRestaurantName() {
+  document.getElementById('restaurant-name').textContent = state.restaurant.name;
+  document.getElementById('restaurant-phone').textContent = state.restaurant.phone;
+}
 
 function initDemoTabs() {
   const tabs = document.querySelectorAll('.demo-tab');
@@ -98,7 +104,7 @@ function initMenu() {
 
 function renderMenu() {
   const container = document.getElementById('menu-items');
-  const categories = ['Pizzas', 'Salads', 'Pasta', 'Desserts', 'Sides'];
+  const categories = ['Spaces', 'Packages', 'Per Person'];
 
   let html = '';
   categories.forEach(cat => {
@@ -116,7 +122,7 @@ function renderMenu() {
             </label>
             <span class="availability-dot ${item.available ? 'available' : ''}"></span>
             <span class="menu-item-name">${item.name}</span>
-            <span class="menu-item-price">€${item.price}</span>
+            <span class="menu-item-price">€${item.price}${item.category === 'Per Person' ? '/person' : ''}</span>
           </div>
           <div class="menu-item-actions">
             <button class="edit-btn" title="Edit">✏️</button>
