@@ -30,7 +30,6 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="hero-badge">🚀 Now serving 50+ businesses</div>
       <h1>Your AI Receptionist,<br>Available 24/7</h1>
@@ -131,6 +130,7 @@
       <button class="demo-tab" data-demo="calls">Calls</button>
     </div>
 
+    <!-- Menu Tab -->
     <div class="demo-content active" id="demo-menu">
       <div class="demo-header-bar">
         <span class="badge">🍕 Sarah's Pizza</span>
@@ -139,61 +139,51 @@
       
       <div class="menu-header">
         <h3>Menu Items</h3>
-        <span class="item-count">8 items</span>
+        <span class="item-count" id="menu-count">8 items available</span>
       </div>
       
-      <div class="menu-category">
-        <h4>🍕 Pizzas</h4>
-        <div class="menu-item">
-          <div class="menu-item-info">
-            <span class="availability-dot available"></span>
-            <span class="menu-item-name">Margherita</span>
-          </div>
-          <span class="menu-item-price">€12.00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-info">
-            <span class="availability-dot available"></span>
-            <span class="menu-item-name">Pepperoni</span>
-          </div>
-          <span class="menu-item-price">€14.00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-info">
-            <span class="availability-dot"></span>
-            <span class="menu-item-name">BBQ Chicken</span>
-          </div>
-          <span class="menu-item-price">€15.50</span>
-        </div>
-      </div>
+      <button class="add-button" id="add-item-btn">+ Add Item</button>
       
-      <div class="menu-category">
-        <h4>🥗 Salads</h4>
-        <div class="menu-item">
-          <div class="menu-item-info">
-            <span class="availability-dot available"></span>
-            <span class="menu-item-name">Caesar Salad</span>
-          </div>
-          <span class="menu-item-price">€8.00</span>
+      <div class="add-form" id="add-item-form">
+        <select id="new-item-category">
+          <option value="Pizzas">Pizzas</option>
+          <option value="Salads">Salads</option>
+          <option value="Pasta">Pasta</option>
+          <option value="Desserts">Desserts</option>
+          <option value="Sides">Sides</option>
+        </select>
+        <input type="text" id="new-item-name" placeholder="Item name">
+        <input type="text" id="new-item-price" placeholder="Price (e.g. 12.00)">
+        <div class="form-buttons">
+          <button class="cancel-btn" id="cancel-add">Cancel</button>
+          <button class="save-btn" id="confirm-add">Add</button>
         </div>
       </div>
-      
-      <div class="menu-category">
-        <h4>🍝 Pasta</h4>
-        <div class="menu-item">
-          <div class="menu-item-info">
-            <span class="availability-dot available"></span>
-            <span class="menu-item-name">Spaghetti Carbonara</span>
-          </div>
-          <span class="menu-item-price">€13.00</span>
+
+      <div class="add-form" id="edit-item-form">
+        <select id="edit-item-category">
+          <option value="Pizzas">Pizzas</option>
+          <option value="Salads">Salads</option>
+          <option value="Pasta">Pasta</option>
+          <option value="Desserts">Desserts</option>
+          <option value="Sides">Sides</option>
+        </select>
+        <input type="text" id="edit-item-name" placeholder="Item name">
+        <input type="text" id="edit-item-price" placeholder="Price">
+        <div class="form-buttons">
+          <button class="cancel-btn" id="cancel-edit">Cancel</button>
+          <button class="save-btn" id="confirm-edit">Save</button>
         </div>
       </div>
+
+      <div id="menu-items"></div>
       
       <div class="demo-note">
-        💡 In the real app, you can edit items, add new ones, and toggle availability
+        💡 Toggle availability, edit or delete items. Changes are saved automatically.
       </div>
     </div>
 
+    <!-- Hours Tab -->
     <div class="demo-content" id="demo-hours">
       <div class="demo-header-bar">
         <span class="badge">🍕 Sarah's Pizza</span>
@@ -204,38 +194,14 @@
         <h3>Opening Hours</h3>
       </div>
       
-      <div class="hours-list">
-        <div class="hours-row">
-          <span class="hours-day">Monday</span>
-          <span class="hours-time">Closed</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">Tuesday</span>
-          <span class="hours-time">11:00 - 22:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">Wednesday</span>
-          <span class="hours-time">11:00 - 22:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">Thursday</span>
-          <span class="hours-time">11:00 - 22:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">Friday</span>
-          <span class="hours-time">11:00 - 23:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">Saturday</span>
-          <span class="hours-time">12:00 - 23:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">Sunday</span>
-          <span class="hours-time">12:00 - 21:00</span>
-        </div>
+      <div class="hours-grid" id="hours-grid"></div>
+      
+      <div class="demo-note">
+        💡 Click the time inputs to change opening hours. Toggle "Closed" for days you're not open.
       </div>
     </div>
 
+    <!-- First Message Tab -->
     <div class="demo-content" id="demo-firstMessage">
       <div class="demo-header-bar">
         <span class="badge">🍕 Sarah's Pizza</span>
@@ -246,15 +212,20 @@
         <h3>AI Greeting</h3>
       </div>
       
-      <div class="first-message-box">
-        <p>"Hi! Welcome to Sarah's Pizza. How can I help you today?"</p>
+      <div class="first-message-editor">
+        <textarea id="first-message-text" placeholder="Enter the greeting your AI will use..."></textarea>
+        <div class="first-message-actions">
+          <button class="save-btn" id="save-first-message">Save</button>
+          <span class="save-feedback" id="first-message-feedback"></span>
+        </div>
       </div>
       
       <div class="demo-note">
-        💡 The AI uses this greeting when answering incoming calls
+        💡 This is the first thing callers hear when the AI answers. Keep it short and friendly!
       </div>
     </div>
 
+    <!-- Calls Tab -->
     <div class="demo-content" id="demo-calls">
       <div class="demo-header-bar">
         <span class="badge">🍕 Sarah's Pizza</span>
@@ -266,53 +237,10 @@
         <span class="call-count">6 calls</span>
       </div>
       
-      <div class="calls-list">
-        <div class="call-row">
-          <div class="call-info">
-            <span class="call-time">Today, 18:32</span>
-            <span class="call-summary">Table for 4, Saturday evening</span>
-          </div>
-          <span class="call-status handled">Handled</span>
-        </div>
-        <div class="call-row">
-          <div class="call-info">
-            <span class="call-time">Today, 17:15</span>
-            <span class="call-summary">Takeout order - 2 margheritas</span>
-          </div>
-          <span class="call-status handled">Handled</span>
-        </div>
-        <div class="call-row">
-          <div class="call-info">
-            <span class="call-time">Yesterday, 19:45</span>
-            <span class="call-summary">Question about gluten-free options</span>
-          </div>
-          <span class="call-status handled">Handled</span>
-        </div>
-        <div class="call-row">
-          <div class="call-info">
-            <span class="call-time">Yesterday, 14:20</span>
-            <span class="call-summary">Complaint about delivery time</span>
-          </div>
-          <span class="call-status transferred">Transferred</span>
-        </div>
-        <div class="call-row">
-          <div class="call-info">
-            <span class="call-time">Apr 5, 20:10</span>
-            <span class="call-summary">Wrong number</span>
-          </div>
-          <span class="call-status missed">Missed</span>
-        </div>
-        <div class="call-row">
-          <div class="call-info">
-            <span class="call-time">Apr 5, 12:30</span>
-            <span class="call-summary">Reservation for 2, tonight</span>
-          </div>
-          <span class="call-status handled">Handled</span>
-        </div>
-      </div>
+      <div class="calls-list" id="calls-list"></div>
       
       <div class="demo-note">
-        💡 Calls are automatically logged with summaries. You can flag calls for review.
+        💡 Calls are automatically logged with summaries. In the real app, you can flag calls for review.
       </div>
     </div>
   </section>
@@ -421,23 +349,9 @@
     </div>
   </footer>
 
+  <script src="app.js"></script>
   <script>
-    // Demo tab switching
-    document.querySelectorAll('.demo-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const demo = tab.dataset.demo;
-        
-        // Update tabs
-        document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        // Update content
-        document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-        document.getElementById('demo-' + demo).classList.add('active');
-      });
-    });
-
-    // Smooth scroll
+    // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
