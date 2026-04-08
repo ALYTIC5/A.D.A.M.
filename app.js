@@ -1,5 +1,6 @@
 // ============================================
 // ADAM Demo - Sarah's Event Hall (Venue Type)
+// Full Interactive - Local Storage Only
 // ============================================
 
 const STORAGE_KEY = 'adam_demo_venue_state';
@@ -11,7 +12,7 @@ const defaultState = {
     description: "Private event spaces for any occasion",
     phone: "(555) 333-4444",
   },
-  // Venue Spaces - like in VenueTabs
+  // Venue Spaces
   spaces: [
     { 
       id: "space-1", 
@@ -34,7 +35,7 @@ const defaultState = {
       available: true 
     },
   ],
-  // Venue Questions - booking questions asked by AI
+  // Venue Questions
   questions: [
     { id: "q1", questionText: "How many guests are you expecting?", required: true, category: "guest_info" },
     { id: "q2", questionText: "What kind of event is this?", required: true, category: "guest_info" },
@@ -102,6 +103,19 @@ function saveState() {
   }
 }
 
+function generateId() {
+  return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+}
+
+function showFeedback(elementId, message) {
+  const el = document.getElementById(elementId);
+  if (el) {
+    el.textContent = message;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2000);
+  }
+}
+
 // ============================================
 // Demo Tab Switching
 // ============================================
@@ -139,10 +153,13 @@ function initDemoTabs() {
 }
 
 // ============================================
-// Spaces Tab
+// Spaces Tab - FULL CRUD
 // ============================================
+let editingSpaceId = null;
+
 function initSpaces() {
   renderSpaces();
+  setupSpaceListeners();
 }
 
 function renderSpaces() {
@@ -151,31 +168,31 @@ function renderSpaces() {
   let html = '';
   state.spaces.forEach(space => {
     html += `
-      <div class="space-card">
+      <div class="space-card" data-id="${space.id}">
         <div class="space-header">
           <h4>${space.name}</h4>
           <label class="availability-toggle small">
-            <input type="checkbox" ${space.available ? 'checked' : ''} data-id="${space.id}">
+            <input type="checkbox" ${space.available ? 'checked' : ''} data-id="${space.id}" data-action="toggle">
             <span class="slider"></span>
           </label>
         </div>
         <div class="space-details">
           <div class="space-detail">
-            <span class="label">Standing Capacity</span>
+            <span class="label">Standing</span>
             <span class="value">${space.capacityStanding}</span>
           </div>
           <div class="space-detail">
-            <span class="label">Seated Capacity</span>
+            <span class="label">Seated</span>
             <span class="value">${space.capacitySeated}</span>
           </div>
           <div class="space-detail">
-            <span class="label">Hourly Rate</span>
+            <span class="label">Rate/hr</span>
             <span class="value price">€${space.hourlyRate}</span>
           </div>
         </div>
         <div class="space-actions">
-          <button class="edit-btn" data-id="${space.id}">✏️ Edit</button>
-          <button class="delete-btn" data-id="${space.id}">🗑️</button>
+          <button class="edit-btn" data-action="edit" data-id="${space.id}">✏️ Edit</button>
+          <button class="delete-btn" data-action="delete" data-id="${space.id}">🗑️</button>
         </div>
       </div>
     `;
@@ -183,25 +200,136 @@ function renderSpaces() {
   
   container.innerHTML = html;
   
-  // Toggle availability
-  document.querySelectorAll('.space-card input[type="checkbox"]').forEach(toggle => {
-    toggle.addEventListener('change', (e) => {
-      const id = e.target.dataset.id;
+  if (state.spaces.length === 0) {
+    container.innerHTML = '<p class="empty-state">No spaces yet. Add one below!</p>';
+  }
+}
+
+function setupSpaceListeners() {
+  // Add button
+  document.getElementById('add-space-btn')?.addEventListener('click', () => {
+    document.getElementById('space-form').classList.add('show');
+    document.getElementById('edit-space-form').classList.remove('show');
+    clearSpaceForm();
+  });
+  
+  // Cancel add
+  document.getElementById('cancel-add-space')?.addEventListener('click', () => {
+    document.getElementById('space-form').classList.remove('show');
+    clearSpaceForm();
+  });
+  
+  // Confirm add
+  document.getElementById('confirm-add-space')?.addEventListener('click', () => {
+    const name = document.getElementById('new-space-name').value.trim();
+    const standing = parseInt(document.getElementById('new-space-standing').value) || 0;
+    const seated = parseInt(document.getElementById('new-space-seated').value) || 0;
+    const rate = parseFloat(document.getElementById('new-space-rate').value) || 0;
+    
+    if (!name) return;
+    
+    state.spaces.push({
+      id: generateId(),
+      name,
+      capacityStanding: standing,
+      capacitySeated: seated,
+      hourlyRate: rate,
+      description: "",
+      amenities: "",
+      available: true
+    });
+    saveState();
+    renderSpaces();
+    document.getElementById('space-form').classList.remove('show');
+    clearSpaceForm();
+    showFeedback('space-feedback', '✓ Added');
+  });
+  
+  // Cancel edit
+  document.getElementById('cancel-edit-space')?.addEventListener('click', () => {
+    document.getElementById('edit-space-form').classList.remove('show');
+    editingSpaceId = null;
+  });
+  
+  // Confirm edit
+  document.getElementById('confirm-edit-space')?.addEventListener('click', () => {
+    if (!editingSpaceId) return;
+    
+    const name = document.getElementById('edit-space-name').value.trim();
+    const standing = parseInt(document.getElementById('edit-space-standing').value) || 0;
+    const seated = parseInt(document.getElementById('edit-space-seated').value) || 0;
+    const rate = parseFloat(document.getElementById('edit-space-rate').value) || 0;
+    
+    if (!name) return;
+    
+    const space = state.spaces.find(s => s.id === editingSpaceId);
+    if (space) {
+      space.name = name;
+      space.capacityStanding = standing;
+      space.capacitySeated = seated;
+      space.hourlyRate = rate;
+      saveState();
+      renderSpaces();
+    }
+    
+    document.getElementById('edit-space-form').classList.remove('show');
+    editingSpaceId = null;
+    showFeedback('space-feedback', '✓ Saved');
+  });
+  
+  // Delegated events for cards
+  document.getElementById('spaces-list')?.addEventListener('click', (e) => {
+    const action = e.target.dataset.action;
+    const id = e.target.dataset.id;
+    
+    if (action === 'toggle') {
       const space = state.spaces.find(s => s.id === id);
       if (space) {
         space.available = e.target.checked;
         saveState();
         renderSpaces();
       }
-    });
+    }
+    
+    if (action === 'edit') {
+      const space = state.spaces.find(s => s.id === id);
+      if (space) {
+        editingSpaceId = id;
+        document.getElementById('edit-space-name').value = space.name;
+        document.getElementById('edit-space-standing').value = space.capacityStanding;
+        document.getElementById('edit-space-seated').value = space.capacitySeated;
+        document.getElementById('edit-space-rate').value = space.hourlyRate;
+        document.getElementById('edit-space-form').classList.add('show');
+        document.getElementById('space-form').classList.remove('show');
+      }
+    }
+    
+    if (action === 'delete') {
+      if (confirm('Delete this space?')) {
+        state.spaces = state.spaces.filter(s => s.id !== id);
+        saveState();
+        renderSpaces();
+        showFeedback('space-feedback', '✓ Deleted');
+      }
+    }
   });
 }
 
+function clearSpaceForm() {
+  document.getElementById('new-space-name').value = '';
+  document.getElementById('new-space-standing').value = '';
+  document.getElementById('new-space-seated').value = '';
+  document.getElementById('new-space-rate').value = '';
+}
+
 // ============================================
-// Questions Tab
+// Questions Tab - FULL CRUD
 // ============================================
+let editingQuestionIdx = null;
+
 function initQuestions() {
   renderQuestions();
+  setupQuestionListeners();
 }
 
 function renderQuestions() {
@@ -210,15 +338,18 @@ function renderQuestions() {
   let html = '';
   state.questions.forEach((q, idx) => {
     html += `
-      <div class="question-row">
+      <div class="question-row" data-idx="${idx}">
         <div class="question-text">${q.questionText}</div>
         <div class="question-meta">
           <span class="category">${q.category}</span>
-          <span class="required ${q.required ? 'required-yes' : 'required-no'}">${q.required ? 'Required' : 'Optional'}</span>
+          <label class="required-toggle">
+            <input type="checkbox" ${q.required ? 'checked' : ''} data-idx="${idx}" data-action="toggle-required">
+            <span class="toggle-label">${q.required ? 'Required' : 'Optional'}</span>
+          </label>
         </div>
         <div class="question-actions">
-          <button class="edit-btn" data-idx="${idx}">✏️</button>
-          <button class="delete-btn" data-idx="${idx}">🗑️</button>
+          <button class="edit-btn" data-action="edit" data-idx="${idx}">✏️</button>
+          <button class="delete-btn" data-action="delete" data-idx="${idx}">🗑️</button>
         </div>
       </div>
     `;
@@ -227,8 +358,100 @@ function renderQuestions() {
   container.innerHTML = html;
 }
 
+function setupQuestionListeners() {
+  // Add button
+  document.getElementById('add-question-btn')?.addEventListener('click', () => {
+    document.getElementById('question-form').classList.add('show');
+    document.getElementById('edit-question-form').classList.remove('show');
+  });
+  
+  // Cancel add
+  document.getElementById('cancel-add-question')?.addEventListener('click', () => {
+    document.getElementById('question-form').classList.remove('show');
+    document.getElementById('new-question-text').value = '';
+  });
+  
+  // Confirm add
+  document.getElementById('confirm-add-question')?.addEventListener('click', () => {
+    const text = document.getElementById('new-question-text').value.trim();
+    const required = document.getElementById('new-question-required').checked;
+    const category = document.getElementById('new-question-category').value;
+    
+    if (!text) return;
+    
+    state.questions.push({
+      id: generateId(),
+      questionText: text,
+      required,
+      category
+    });
+    saveState();
+    renderQuestions();
+    document.getElementById('question-form').classList.remove('show');
+    document.getElementById('new-question-text').value = '';
+    showFeedback('question-feedback', '✓ Added');
+  });
+  
+  // Cancel edit
+  document.getElementById('cancel-edit-question')?.addEventListener('click', () => {
+    document.getElementById('edit-question-form').classList.remove('show');
+    editingQuestionIdx = null;
+  });
+  
+  // Confirm edit
+  document.getElementById('confirm-edit-question')?.addEventListener('click', () => {
+    if (editingQuestionIdx === null) return;
+    
+    const text = document.getElementById('edit-question-text').value.trim();
+    const required = document.getElementById('edit-question-required').checked;
+    const category = document.getElementById('edit-question-category').value;
+    
+    if (!text) return;
+    
+    state.questions[editingQuestionIdx].questionText = text;
+    state.questions[editingQuestionIdx].required = required;
+    state.questions[editingQuestionIdx].category = category;
+    saveState();
+    renderQuestions();
+    document.getElementById('edit-question-form').classList.remove('show');
+    editingQuestionIdx = null;
+    showFeedback('question-feedback', '✓ Saved');
+  });
+  
+  // Delegated events
+  document.getElementById('questions-list')?.addEventListener('click', (e) => {
+    const action = e.target.dataset.action;
+    const idx = parseInt(e.target.dataset.idx);
+    
+    if (action === 'toggle-required') {
+      state.questions[idx].required = e.target.checked;
+      saveState();
+      renderQuestions();
+    }
+    
+    if (action === 'edit') {
+      editingQuestionIdx = idx;
+      const q = state.questions[idx];
+      document.getElementById('edit-question-text').value = q.questionText;
+      document.getElementById('edit-question-required').checked = q.required;
+      document.getElementById('edit-question-category').value = q.category;
+      document.getElementById('edit-question-form').classList.add('show');
+      document.getElementById('question-form').classList.remove('show');
+    }
+    
+    if (action === 'delete') {
+      if (confirm('Delete this question?')) {
+        state.questions.splice(idx, 1);
+        saveState();
+        renderQuestions();
+        showFeedback('question-feedback', '✓ Deleted');
+      }
+    }
+  });
+}
+
 // ============================================
-// Policies Tab
+// Policies Tab - FULL CRUD
 // ============================================
 function initPolicies() {
   renderPolicies();
@@ -258,26 +481,23 @@ function renderPolicies() {
       if (policy) {
         policy.value = e.target.value;
         saveState();
+        showFeedback('policy-feedback', '✓ Saved');
       }
     });
   });
 }
 
 function getPolicyUnit(key) {
-  const units = {
-    deposit_percentage: "%",
-    cancellation_days: "days",
-    minimum_hours: "hrs",
-    after_midnight_surcharge: "%"
-  };
+  const units = { deposit_percentage: "%", cancellation_days: "days", minimum_hours: "hrs", after_midnight_surcharge: "%" };
   return units[key] || "";
 }
 
 // ============================================
-// Add-Ons Tab
+// Add-Ons Tab - FULL CRUD
 // ============================================
 function initAddons() {
   renderAddons();
+  setupAddonListeners();
 }
 
 function renderAddons() {
@@ -286,32 +506,115 @@ function renderAddons() {
   let html = '';
   state.addons.forEach(addon => {
     html += `
-      <div class="addon-card">
+      <div class="addon-card" data-id="${addon.id}">
         <div class="addon-info">
           <h4>${addon.name}</h4>
           <p class="addon-price">€${addon.price}${addon.description ? ' - ' + addon.description : ''}</p>
         </div>
-        <label class="availability-toggle small">
-          <input type="checkbox" ${addon.available ? 'checked' : ''} data-id="${addon.id}">
-          <span class="slider"></span>
-        </label>
+        <div class="addon-actions">
+          <label class="availability-toggle small">
+            <input type="checkbox" ${addon.available ? 'checked' : ''} data-id="${addon.id}" data-action="toggle">
+            <span class="slider"></span>
+          </label>
+          <button class="edit-btn" data-action="edit" data-id="${addon.id}">✏️</button>
+          <button class="delete-btn" data-action="delete" data-id="${addon.id}">🗑️</button>
+        </div>
       </div>
     `;
   });
   
   container.innerHTML = html;
   
-  // Toggle availability
-  document.querySelectorAll('.addon-card input[type="checkbox"]').forEach(toggle => {
-    toggle.addEventListener('change', (e) => {
-      const id = e.target.dataset.id;
+  if (state.addons.length === 0) {
+    container.innerHTML = '<p class="empty-state">No add-ons yet.</p>';
+  }
+}
+
+function setupAddonListeners() {
+  document.getElementById('add-addon-btn')?.addEventListener('click', () => {
+    document.getElementById('addon-form').classList.add('show');
+    document.getElementById('edit-addon-form').classList.remove('show');
+  });
+  
+  document.getElementById('cancel-add-addon')?.addEventListener('click', () => {
+    document.getElementById('addon-form').classList.remove('show');
+    document.getElementById('new-addon-name').value = '';
+    document.getElementById('new-addon-price').value = '';
+    document.getElementById('new-addon-desc').value = '';
+  });
+  
+  document.getElementById('confirm-add-addon')?.addEventListener('click', () => {
+    const name = document.getElementById('new-addon-name').value.trim();
+    const price = parseFloat(document.getElementById('new-addon-price').value) || 0;
+    const desc = document.getElementById('new-addon-desc').value.trim();
+    
+    if (!name) return;
+    
+    state.addons.push({ id: generateId(), name, price, description: desc, available: true });
+    saveState();
+    renderAddons();
+    document.getElementById('addon-form').classList.remove('show');
+    document.getElementById('new-addon-name').value = '';
+    document.getElementById('new-addon-price').value = '';
+    document.getElementById('new-addon-desc').value = '';
+    showFeedback('addon-feedback', '✓ Added');
+  });
+  
+  document.getElementById('cancel-edit-addon')?.addEventListener('click', () => {
+    document.getElementById('edit-addon-form').classList.remove('show');
+  });
+  
+  document.getElementById('confirm-edit-addon')?.addEventListener('click', () => {
+    const id = document.getElementById('edit-addon-id').value;
+    const name = document.getElementById('edit-addon-name').value.trim();
+    const price = parseFloat(document.getElementById('edit-addon-price').value) || 0;
+    const desc = document.getElementById('edit-addon-desc').value.trim();
+    
+    const addon = state.addons.find(a => a.id === id);
+    if (addon && name) {
+      addon.name = name;
+      addon.price = price;
+      addon.description = desc;
+      saveState();
+      renderAddons();
+      document.getElementById('edit-addon-form').classList.remove('show');
+      showFeedback('addon-feedback', '✓ Saved');
+    }
+  });
+  
+  document.getElementById('addons-list')?.addEventListener('click', (e) => {
+    const action = e.target.dataset.action;
+    const id = e.target.dataset.id;
+    
+    if (action === 'toggle') {
       const addon = state.addons.find(a => a.id === id);
       if (addon) {
         addon.available = e.target.checked;
         saveState();
         renderAddons();
       }
-    });
+    }
+    
+    if (action === 'edit') {
+      const addon = state.addons.find(a => a.id === id);
+      if (addon) {
+        document.getElementById('edit-addon-id').value = addon.id;
+        document.getElementById('edit-addon-name').value = addon.name;
+        document.getElementById('edit-addon-price').value = addon.price;
+        document.getElementById('edit-addon-desc').value = addon.description;
+        document.getElementById('edit-addon-form').classList.add('show');
+        document.getElementById('addon-form').classList.remove('show');
+      }
+    }
+    
+    if (action === 'delete') {
+      if (confirm('Delete this add-on?')) {
+        state.addons = state.addons.filter(a => a.id !== id);
+        saveState();
+        renderAddons();
+        showFeedback('addon-feedback', '✓ Deleted');
+      }
+    }
   });
 }
 
@@ -345,7 +648,6 @@ function renderHours() {
 
   container.innerHTML = html;
 
-  // Event listeners
   document.querySelectorAll('.open-time').forEach((input) => {
     input.addEventListener('change', (e) => {
       const idx = parseInt(e.target.dataset.idx);
@@ -373,21 +675,18 @@ function renderHours() {
 }
 
 // ============================================
-// First Message
+// First Message Tab
 // ============================================
 function initFirstMessage() {
   const textarea = document.getElementById('first-message-text');
   const saveBtn = document.getElementById('save-first-message');
-  const feedback = document.getElementById('first-message-feedback');
   
   textarea.value = state.firstMessage;
   
   saveBtn.addEventListener('click', () => {
     state.firstMessage = textarea.value;
     saveState();
-    feedback.textContent = '✓ Saved';
-    feedback.classList.add('show');
-    setTimeout(() => feedback.classList.remove('show'), 2000);
+    showFeedback('first-message-feedback', '✓ Saved');
   });
 }
 

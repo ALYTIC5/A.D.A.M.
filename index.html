@@ -142,11 +142,42 @@
       </div>
       <div class="tab-header">
         <h3>Venue Spaces</h3>
+        <button class="add-button" id="add-space-btn">+ Add Space</button>
       </div>
+      
+      <!-- Add Space Form -->
+      <div class="form-panel" id="space-form">
+        <h4>Add New Space</h4>
+        <div class="form-grid">
+          <input type="text" id="new-space-name" placeholder="Space name">
+          <input type="number" id="new-space-standing" placeholder="Standing capacity">
+          <input type="number" id="new-space-seated" placeholder="Seated capacity">
+          <input type="number" id="new-space-rate" placeholder="Hourly rate (€)">
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" id="cancel-add-space">Cancel</button>
+          <button class="save-btn" id="confirm-add-space">Add Space</button>
+        </div>
+      </div>
+      
+      <!-- Edit Space Form -->
+      <div class="form-panel" id="edit-space-form">
+        <h4>Edit Space</h4>
+        <div class="form-grid">
+          <input type="text" id="edit-space-name" placeholder="Space name">
+          <input type="number" id="edit-space-standing" placeholder="Standing capacity">
+          <input type="number" id="edit-space-seated" placeholder="Seated capacity">
+          <input type="number" id="edit-space-rate" placeholder="Hourly rate (€)">
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" id="cancel-edit-space">Cancel</button>
+          <button class="save-btn" id="confirm-edit-space">Save</button>
+        </div>
+      </div>
+      
       <div id="spaces-list"></div>
-      <div class="demo-note">
-        💡 Toggle space availability. Edit hourly rates and capacities.
-      </div>
+      <span class="save-feedback" id="space-feedback"></span>
+      <div class="demo-note">💡 Add, edit, or delete spaces. Toggle availability.</div>
     </div>
 
     <!-- Questions Tab -->
@@ -157,12 +188,57 @@
       </div>
       <div class="tab-header">
         <h3>Booking Questions</h3>
+        <button class="add-button" id="add-question-btn">+ Add Question</button>
       </div>
-      <p class="tab-description">These questions are asked by the AI during booking calls to gather customer information.</p>
+      <p class="tab-description">These questions are asked by the AI during booking calls.</p>
+      
+      <!-- Add Question Form -->
+      <div class="form-panel" id="question-form">
+        <h4>Add New Question</h4>
+        <div class="form-grid single">
+          <input type="text" id="new-question-text" placeholder="Question text">
+          <select id="new-question-category">
+            <option value="guest_info">Guest Info</option>
+            <option value="catering">Catering</option>
+            <option value="requirements">Requirements</option>
+            <option value="other">Other</option>
+          </select>
+          <label class="checkbox-label">
+            <input type="checkbox" id="new-question-required" checked>
+            Required
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" id="cancel-add-question">Cancel</button>
+          <button class="save-btn" id="confirm-add-question">Add</button>
+        </div>
+      </div>
+      
+      <!-- Edit Question Form -->
+      <div class="form-panel" id="edit-question-form">
+        <h4>Edit Question</h4>
+        <div class="form-grid single">
+          <input type="text" id="edit-question-text" placeholder="Question text">
+          <select id="edit-question-category">
+            <option value="guest_info">Guest Info</option>
+            <option value="catering">Catering</option>
+            <option value="requirements">Requirements</option>
+            <option value="other">Other</option>
+          </select>
+          <label class="checkbox-label">
+            <input type="checkbox" id="edit-question-required" checked>
+            Required
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" id="cancel-edit-question">Cancel</button>
+          <button class="save-btn" id="confirm-edit-question">Save</button>
+        </div>
+      </div>
+      
       <div id="questions-list"></div>
-      <div class="demo-note">
-        💡 Customize the questions the AI asks callers. Mark as required or optional.
-      </div>
+      <span class="save-feedback" id="question-feedback"></span>
+      <div class="demo-note">💡 Add, edit, delete questions. Toggle required/optional.</div>
     </div>
 
     <!-- Policies Tab -->
@@ -174,11 +250,10 @@
       <div class="tab-header">
         <h3>Booking Policies</h3>
       </div>
-      <p class="tab-description">Configure deposit requirements, cancellation policies, and minimum booking durations.</p>
+      <p class="tab-description">Configure deposit, cancellation, and booking rules.</p>
       <div id="policies-list"></div>
-      <div class="demo-note">
-        💡 These policies are used by the AI when handling booking inquiries.
-      </div>
+      <span class="save-feedback" id="policy-feedback"></span>
+      <div class="demo-note">💡 Click any value to edit. Changes save automatically.</div>
     </div>
 
     <!-- Add-Ons Tab -->
@@ -189,11 +264,41 @@
       </div>
       <div class="tab-header">
         <h3>Add-Ons & Services</h3>
+        <button class="add-button" id="add-addon-btn">+ Add On</button>
       </div>
+      
+      <!-- Add Addon Form -->
+      <div class="form-panel" id="addon-form">
+        <h4>Add New Add-On</h4>
+        <div class="form-grid single">
+          <input type="text" id="new-addon-name" placeholder="Name">
+          <input type="number" id="new-addon-price" placeholder="Price (€)">
+          <input type="text" id="new-addon-desc" placeholder="Description (optional)">
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" id="cancel-add-addon">Cancel</button>
+          <button class="save-btn" id="confirm-add-addon">Add</button>
+        </div>
+      </div>
+      
+      <!-- Edit Addon Form -->
+      <div class="form-panel" id="edit-addon-form">
+        <h4>Edit Add-On</h4>
+        <input type="hidden" id="edit-addon-id">
+        <div class="form-grid single">
+          <input type="text" id="edit-addon-name" placeholder="Name">
+          <input type="number" id="edit-addon-price" placeholder="Price (€)">
+          <input type="text" id="edit-addon-desc" placeholder="Description">
+        </div>
+        <div class="form-actions">
+          <button class="cancel-btn" id="cancel-edit-addon">Cancel</button>
+          <button class="save-btn" id="confirm-edit-addon">Save</button>
+        </div>
+      </div>
+      
       <div id="addons-list"></div>
-      <div class="demo-note">
-        💡 Toggle add-ons availability. These can be offered during booking calls.
-      </div>
+      <span class="save-feedback" id="addon-feedback"></span>
+      <div class="demo-note">💡 Add, edit, delete add-ons. Toggle availability.</div>
     </div>
 
     <!-- Hours Tab -->
@@ -206,9 +311,7 @@
         <h3>Opening Hours</h3>
       </div>
       <div class="hours-grid" id="hours-grid"></div>
-      <div class="demo-note">
-        💡 Set hours when the AI accepts bookings. Days marked closed won't accept reservations.
-      </div>
+      <div class="demo-note">💡 Edit times or mark days as closed. Changes save automatically.</div>
     </div>
 
     <!-- First Message Tab -->
@@ -227,9 +330,7 @@
           <span class="save-feedback" id="first-message-feedback"></span>
         </div>
       </div>
-      <div class="demo-note">
-        💡 This is the first thing callers hear when the AI answers.
-      </div>
+      <div class="demo-note">💡 This is the first thing callers hear when the AI answers.</div>
     </div>
 
     <!-- Calls Tab -->
@@ -243,9 +344,7 @@
         <span class="call-count">6 calls</span>
       </div>
       <div class="calls-list" id="calls-list"></div>
-      <div class="demo-note">
-        💡 Calls are automatically logged with summaries. In the real app, you can flag calls for review.
-      </div>
+      <div class="demo-note">💡 Read-only demo. In the real app, you can flag calls for review.</div>
     </div>
 
     <!-- Reservations Tab -->
@@ -259,9 +358,7 @@
         <span class="reservation-count">3 bookings</span>
       </div>
       <div id="reservations-list"></div>
-      <div class="demo-note">
-        💡 View all bookings. In the real app, you can edit, confirm, or delete reservations.
-      </div>
+      <div class="demo-note">💡 Read-only demo. In the real app, you can edit, confirm, or delete reservations.</div>
     </div>
   </section>
 
@@ -371,14 +468,11 @@
 
   <script src="app.js"></script>
   <script>
-    // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
