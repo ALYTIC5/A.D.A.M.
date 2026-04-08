@@ -354,6 +354,104 @@ body::before {
 }
 
 /* ========================================
+   Services Section
+   ======================================== */
+
+.services {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.services .section-header {
+  margin-bottom: 4rem;
+}
+
+.services .section-header h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.services .section-header p {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.service-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.service-card:hover {
+  border-color: var(--primary);
+  background: rgba(16, 185, 129, 0.04);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+  border-radius: 16px;
+}
+
+.service-icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--primary);
+}
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.625rem;
+  color: var(--text);
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* ========================================
    How It Works
    ======================================== */
 
@@ -1623,6 +1721,10 @@ footer {
     justify-content: center;
   }
 
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1664,6 +1766,15 @@ footer {
 
   .hero h1 {
     font-size: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .services .section-header h2 {
+    font-size: 1.75rem;
   }
 
   .features-grid {
