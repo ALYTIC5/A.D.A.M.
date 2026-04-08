@@ -7,7 +7,7 @@
   <meta name="description" content="ADAM helps businesses integrate AI into their systems to handle reservations, tours, customer calls, and more — 24/7.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
 </head>
@@ -15,338 +15,189 @@
   <!-- Navigation -->
   <nav class="main-nav">
     <div class="nav-content">
-      <a href="#" class="logo" data-nav="home">
+      <a href="#" class="logo">
         <span class="logo-icon">🎙️</span>
         <span class="logo-text">ADAM</span>
       </a>
       <div class="nav-links">
-        <button class="nav-link" data-nav="home">Home</button>
-        <button class="nav-link" data-nav="how-it-works">How It Works</button>
-        <button class="nav-link" data-nav="demo">Demo</button>
-        <button class="nav-link cta" data-nav="demo">Try It Free</button>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="mailto:hello@adam.ai" class="nav-link cta">Get Started</a>
       </div>
     </div>
   </nav>
 
-  <!-- Section: Home -->
-  <section id="home" class="nav-section active">
-    <!-- Hero -->
-    <div class="hero">
-      <div class="hero-content">
-        <div class="hero-badge">🚀 Now serving 50+ businesses</div>
-        <h1>Your AI Receptionist,<br>Available 24/7</h1>
-        <p class="tagline">Artificially Developed Autonomous Minds</p>
-        <p class="description">ADAM handles your phone calls, bookings, and customer inquiries so you can focus on what matters — running your business.</p>
-        <div class="hero-buttons">
-          <button class="btn btn-primary" data-nav="demo">See It In Action →</button>
-          <a href="mailto:hello@adam.ai?subject=Learn More about ADAM" class="btn btn-secondary">Talk to Sales</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-number">10,000+</span>
-            <span class="stat-label">Calls Handled</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Businesses</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">99.9%</span>
-            <span class="stat-label">Uptime</span>
-          </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Now serving 50+ businesses</div>
+      <h1>Your AI Receptionist,<br>Available 24/7</h1>
+      <p class="tagline">Artificially Developed Autonomous Minds</p>
+      <p class="description">ADAM handles your phone calls, bookings, and customer inquiries so you can focus on what matters — running your business.</p>
+      <div class="hero-buttons">
+        <a href="mailto:hello@adam.ai?subject=Request Demo" class="btn btn-primary">Request a Demo →</a>
+        <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
       </div>
-      <div class="hero-visual">
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="phone-header">
-              <span>🎙️ La Dolce Vita</span>
-            </div>
-            <div class="phone-call">
-              <div class="call-animation">
-                <span class="call-ring">📞</span>
-                <span class="call-status">Incoming call...</span>
-                <span class="call-number">(555) 867-5309</span>
-              </div>
-            </div>
-            <div class="phone-response">
-              <div class="response-bubble">"Hi! Welcome to La Dolce Vita. How can I help you today?"</div>
-            </div>
-          </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">10,000+</span>
+          <span class="stat-label">Calls Handled</span>
         </div>
-      </div>
-      <div class="hero-glow"></div>
-    </div>
-
-    <!-- Logo Cloud -->
-    <section class="logo-cloud">
-      <p>Trusted by forward-thinking businesses</p>
-      <div class="logos">
-        <span class="logo-item">🏪 Local Restaurants</span>
-        <span class="logo-item">🗺️ Tour Companies</span>
-        <span class="logo-item">🏨 Hotels & B&Bs</span>
-        <span class="logo-item">💆 Wellness Centers</span>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services">
-      <div class="section-header">
-        <h2>What ADAM Can Do For You</h2>
-        <p>From restaurants to tour operators, ADAM adapts to your business needs.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="service-icon">📞</span>
-          <h3>Call Handling</h3>
-          <p>Every call gets answered professionally. ADAM routes inquiries, takes messages, and escalates only when necessary.</p>
+        <div class="stat">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Businesses</span>
         </div>
-        <div class="service-card">
-          <span class="service-icon">📅</span>
-          <h3>Smart Reservations</h3>
-          <p>Automated booking with table management, confirmation emails, and calendar integration.</p>
+        <div class="stat">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Uptime</span>
         </div>
-        <div class="service-card">
-          <span class="service-icon">🍽️</span>
-          <h3>Takeout Orders</h3>
-          <p>Process takeout orders directly — menus, dietary restrictions, payment collection.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🗺️</span>
-          <h3>Tour Operations</h3>
-          <p>Schedule tours, answer FAQs, coordinate guides — all without lifting a finger.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">💼</span>
-          <h3>Customer Support</h3>
-          <p>First-line support that resolves common issues and seamlessly escalates complex requests.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-icon">🔗</span>
-          <h3>Works With Your Tools</h3>
-          <p>Google Sheets, Calendars, POS systems, WhatsApp — ADAM integrates with what you use.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial -->
-    <section class="testimonial">
-      <div class="testimonial-content">
-        <blockquote>
-          "Since we started using ADAM, we've never missed a booking call. Our staff can focus on serving customers in-store while ADAM handles everything online. It's like having a perfect receptionist who never sleeps."
-        </blockquote>
-        <div class="testimonial-author">
-          <div class="author-avatar">👨‍🍳</div>
-          <div>
-            <strong>Marco Pellegrini</strong>
-            <span>Owner, La Dolce Vita</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="cta-content">
-        <h2>Ready to work smarter?</h2>
-        <p>Join 50+ businesses already using ADAM to transform their customer service.</p>
-        <div class="cta-buttons">
-          <button class="btn btn-primary btn-large" data-nav="demo">Try the Interactive Demo</button>
-          <a href="mailto:hello@adam.ai?subject=Schedule a call" class="btn btn-outline btn-large">Talk to Sales</a>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <!-- Section: How It Works -->
-  <section id="how-it-works" class="nav-section">
-    <div class="how-it-works">
-      <div class="section-header centered">
-        <h2>How ADAM Works</h2>
-        <p>Get started in minutes. No engineering required.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">01</div>
-          <div class="step-content">
-            <h3>Connect Your Phone</h3>
-            <p>Forward your existing number to ADAM, or get a new dedicated line. Setup takes less than 5 minutes.</p>
-          </div>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step">
-          <div class="step-number">02</div>
-          <div class="step-content">
-            <h3>Customize Your Agent</h3>
-            <p>Tell ADAM about your business — hours, services, pricing. Our AI learns your voice and personality.</p>
-          </div>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step">
-          <div class="step-number">03</div>
-          <div class="step-content">
-            <h3>Go Live</h3>
-            <p>ADAM starts handling calls immediately. Monitor everything from your simple dashboard.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="dashboard-preview">
-        <h3>Your Control Dashboard</h3>
-        <p>Everything you need, in one simple view</p>
-        <button class="btn btn-primary" data-nav="demo">Try the Interactive Demo →</button>
       </div>
     </div>
   </section>
 
-  <!-- Section: Demo Dashboard -->
-  <section id="demo" class="nav-section">
-    <div class="demo-header">
-      <button class="back-btn" data-nav="home">← Back to Home</button>
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="section-header">
+      <h2>What ADAM Can Do For You</h2>
+      <p>From restaurants to tour operators, ADAM adapts to your business needs.</p>
     </div>
-    <div class="dashboard">
-      <div class="dashboard-header">
-        <div class="restaurant-info">
-          <span class="badge">🏪 Demo Restaurant</span>
-          <h2>La Dolce Vita</h2>
-          <p class="description">Modern Italian kitchen & wine bar</p>
-          <p class="phone">(555) 867-5309</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📞</span>
+        <h3>Call Handling</h3>
+        <p>Every call gets answered professionally. ADAM routes inquiries, takes messages, and escalates only when necessary.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h3>Smart Reservations</h3>
+        <p>Automated booking with table management, confirmation emails, and calendar integration.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🍽️</span>
+        <h3>Takeout Orders</h3>
+        <p>Process takeout orders directly — menus, dietary restrictions, payment collection.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🗺️</span>
+        <h3>Tour Operations</h3>
+        <p>Schedule tours, answer FAQs, coordinate guides — all without lifting a finger.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💼</span>
+        <h3>Customer Support</h3>
+        <p>First-line support that resolves common issues and seamlessly escalates complex requests.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔗</span>
+        <h3>Works With Your Tools</h3>
+        <p>Google Sheets, Calendars, POS systems, WhatsApp — ADAM integrates with what you use.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="section-header centered">
+      <h2>How ADAM Works</h2>
+      <p>Get started in minutes. No engineering required.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h3>Connect Your Phone</h3>
+          <p>Forward your existing number to ADAM, or get a new dedicated line. Setup takes less than 5 minutes.</p>
         </div>
       </div>
-
-      <!-- Tabs -->
-      <div class="tabs">
-        <button class="tab active" data-tab="menu">Menu</button>
-        <button class="tab" data-tab="hours">Hours</button>
-        <button class="tab" data-tab="agent">AI Agent</button>
-        <button class="tab" data-tab="calls">Call Log</button>
-      </div>
-
-      <!-- Tab Content: Menu -->
-      <div class="tab-content active" id="menu">
-        <div class="tab-header">
-          <h3>Menu Management</h3>
-          <span class="count" id="menu-count">6/8 items available</span>
-        </div>
-        <button class="add-button" id="add-item-btn">+ Add Item</button>
-        
-        <div class="add-form" id="add-item-form" style="display: none;">
-          <select id="new-item-category">
-            <option value="Starters">Starters</option>
-            <option value="Mains">Mains</option>
-            <option value="Desserts">Desserts</option>
-            <option value="Drinks">Drinks</option>
-          </select>
-          <input type="text" id="new-item-name" placeholder="Item name">
-          <input type="text" id="new-item-price" placeholder="Price (e.g. 12.99)">
-          <div class="form-buttons">
-            <button class="cancel-btn" id="cancel-add">Cancel</button>
-            <button class="save-btn" id="confirm-add">Add Item</button>
-          </div>
-        </div>
-
-        <div class="add-form" id="edit-item-form" style="display: none;">
-          <select id="edit-item-category">
-            <option value="Starters">Starters</option>
-            <option value="Mains">Mains</option>
-            <option value="Desserts">Desserts</option>
-            <option value="Drinks">Drinks</option>
-          </select>
-          <input type="text" id="edit-item-name" placeholder="Item name">
-          <input type="text" id="edit-item-price" placeholder="Price">
-          <div class="form-buttons">
-            <button class="cancel-btn" id="cancel-edit">Cancel</button>
-            <button class="save-btn" id="confirm-edit">Save</button>
-          </div>
-        </div>
-
-        <div id="menu-items"></div>
-      </div>
-
-      <!-- Tab Content: Hours -->
-      <div class="tab-content" id="hours">
-        <div class="tab-header">
-          <h3>Opening Hours</h3>
-        </div>
-        <div class="hours-grid" id="hours-grid"></div>
-      </div>
-
-      <!-- Tab Content: AI Agent -->
-      <div class="tab-content" id="agent">
-        <div class="tab-header">
-          <h3>AI Agent Settings</h3>
-        </div>
-        
-        <div class="agent-status">
-          <div class="status-row">
-            <span>Agent Status</span>
-            <label class="toggle">
-              <input type="checkbox" id="agent-status-toggle" checked>
-              <span class="slider"></span>
-            </label>
-            <span class="status-text active" id="status-text">Active</span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Custom Greeting</label>
-          <textarea id="greeting-text">Thank you for calling La Dolce Vita, how can I help you today?</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Special Instructions</label>
-          <textarea id="special-instructions">Always mention our daily special is the truffle pasta. Ask if they want to make a reservation.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Agent Voice</label>
-          <select id="voice-select">
-            <option value="sofia">Sofia (Warm & Friendly)</option>
-            <option value="marco">Marco (Professional)</option>
-            <option value="elena">Elena (Casual & Relaxed)</option>
-          </select>
-        </div>
-
-        <div class="stats-row">
-          <div class="stat-card">
-            <span class="stat-value">47</span>
-            <span class="stat-label">Calls this week</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-value">94%</span>
-            <span class="stat-label">Handled automatically</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-value">2:34</span>
-            <span class="stat-label">Avg. call duration</span>
-          </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h3>Customize Your Agent</h3>
+          <p>Tell ADAM about your business — hours, services, pricing. Our AI learns your voice and personality.</p>
         </div>
       </div>
-
-      <!-- Tab Content: Call Log -->
-      <div class="tab-content" id="calls">
-        <div class="tab-header">
-          <h3>Recent Calls</h3>
-          <select id="call-filter">
-            <option value="all">All</option>
-            <option value="handled">Handled</option>
-            <option value="transferred">Transferred</option>
-            <option value="missed">Missed</option>
-          </select>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h3>Go Live</h3>
+          <p>ADAM starts handling calls immediately. Monitor everything from your simple dashboard.</p>
         </div>
-        <table class="call-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Duration</th>
-              <th>Summary</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="call-table-body"></tbody>
-        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="testimonial">
+    <div class="testimonial-content">
+      <blockquote>
+        "Since we started using ADAM, we've never missed a booking call. Our staff can focus on serving customers in-store while ADAM handles everything online. It's like having a perfect receptionist who never sleeps."
+      </blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨‍🍳</div>
+        <div>
+          <strong>Marco Pellegrini</strong>
+          <span>Owner, La Dolce Vita</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing">
+    <div class="section-header centered">
+      <h2>Simple, Transparent Pricing</h2>
+      <p>No hidden fees. No surprises.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price">€99<span>/month</span></div>
+        <ul>
+          <li>1 phone number</li>
+          <li>Up to 500 calls/month</li>
+          <li>Basic menu & hours</li>
+          <li>Email support</li>
+        </ul>
+        <a href="mailto:hello@adam.ai?subject=Starter Plan" class="btn btn-outline">Get Started</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge">Most Popular</div>
+        <h3>Professional</h3>
+        <div class="price">€199<span>/month</span></div>
+        <ul>
+          <li>1 phone number</li>
+          <li>Unlimited calls</li>
+          <li>Advanced integrations</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="mailto:hello@adam.ai?subject=Professional Plan" class="btn btn-primary">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <ul>
+          <li>Multiple numbers</li>
+          <li>Unlimited calls</li>
+          <li>Custom integrations</li>
+          <li>Dedicated support</li>
+        </ul>
+        <a href="mailto:hello@adam.ai?subject=Enterprise Plan" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to work smarter?</h2>
+      <p>Join 50+ businesses already using ADAM to transform their customer service.</p>
+      <div class="cta-buttons">
+        <a href="mailto:hello@adam.ai?subject=Request Demo" class="btn btn-primary btn-large">Request a Demo</a>
+        <a href="mailto:hello@adam.ai?subject=Talk to Sales" class="btn btn-outline btn-large">Talk to Sales</a>
       </div>
     </div>
   </section>
@@ -361,9 +212,9 @@
       <div class="footer-links">
         <div class="footer-col">
           <h4>Product</h4>
-          <a href="#" data-nav="how-it-works">How It Works</a>
-          <a href="#" data-nav="demo">Demo</a>
-          <a href="mailto:hello@adam.ai?subject=Pricing inquiry">Pricing</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="mailto:hello@adam.ai?subject=Integration inquiry">Integrations</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -382,7 +233,5 @@
       <p>© 2026 ADAM — Artificially Developed Autonomous Minds. All rights reserved.</p>
     </div>
   </footer>
-
-  <script src="app.js"></script>
 </body>
 </html>
